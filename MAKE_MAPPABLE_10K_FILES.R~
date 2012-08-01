@@ -1,0 +1,18 @@
+
+file <- "/nfs/th_group/hk3/Data_For_Testing_Hotspots_for_gh19/data/hg18.k36.mappable_only_chr22.bed"
+Length <- 49000000
+Window <- 10000
+
+
+MAKE.MAPPLE.10K.FILE.CHRO.SPECIFIC <- function(dataFile, chrLength, windowLength){
+   dataTable = read.table(file =dataFile, sep = "\t" )
+   dataMatrix= as.matrix(dataTable)
+   dataMatrix
+   for(p  in seq(0,chrLength,by=windowLength) ){
+     X <- which( as.numeric(dataMatrix[,3 ]) < p+windowLength )
+     X <- which(as.numeric(dataMatrix[X,2]) >= p  )
+     L <- as.numeric(dataMatrix[X,3 ]) - as.numeric(dataMatrix[X,2 ])
+     S <- sum(L)
+     print(paste("22", p, S, sep = "  "))
+   }
+ }
