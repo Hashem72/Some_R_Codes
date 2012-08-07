@@ -33,7 +33,7 @@ DRAW.SEQLOGO.FROM.FREQUENCY.OF.NUCLEOTIDES <- function(dtatFile){
   sums.over.cols <- colSums(pssm)
   pssm <- pssm/sums.over.cols
   pwm <- makePWM(pssm)
-  seqLogo(pwm, ic.scale = FALSE) 
+  seqLogo(pwm) 
 }
 
 
