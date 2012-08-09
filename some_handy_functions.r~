@@ -1,0 +1,47 @@
+
+
+
+bed.as.data.frame <- function(aBedFile){
+  #will read a bed file and return it as a data frame
+  #bed files must have either 3 or 6 or 9 columns
+
+  data <-  read.table(aBedFile)
+  numCol <- ncol(data)
+  if(numCol == 3){
+    colName = c("chrom", "start", "end")
+  }
+  else if(numCol == 6){
+    colName = c("chrom", "start", "end", "name", "score", "strand")
+  }
+  else if(numCol == 9){
+    colName = c("chrom", "start", "end", "name", "score", "strand", "thickStart", "thickEnd", "itemRgb")
+  }
+  else if(numCol == 12){
+    colName = c("chrom", "start", "end", "name", "score", "strand", "thickStart", "thickEnd", "itemRgb", "blockCount", "blockSize", "blockStarts")
+  }
+  else{
+    stop(paste("Expected a bed file but got file with ", numCol, " collumns!", sep = " "))
+  }
+  colnames(data) <- colName
+  data.as.df <- as.data.frame(data)
+  data.as.df
+}#bed.as.data.frame#
+
+distribution.of.hotspost <- function(dfE, dfA,dfB, BinWidth, cellType){
+  #dfA: is the data frame of Encode Hotspots, dfA data frame of A hotsopts and so on
+  Main <- paste("distribution of", cellType, " hotspots with binwidth=", BinWidth ,sep = " ")
+  starts <- c(dfE$start, dfA$start, dfB$start)
+  Min   <- min(starts)
+  ends <- c(dfE$end, dfA$end, dfB$end)
+  Max <- max(ends)
+  Names <- c(rep("E", length(dfE$start)), rep("A", length(dfA$start) ), rep("B", length(dfB$start)) )
+  newDF <- data.frame(starts = starts, ends = ends, Names = Names)
+  qplot((ends-starts)/2 +starts, data = newDF, geom = "histogram", binwidth = BinWidth, fill = Names, xlim = c(Min, Max), xlab = "midpoint of each feature", alpha = I(1/2), main = Main)
+  E.sum <- sum(dfE$end-dfE$start)
+  A.sum <- sum(dfA$end-dfA$start)
+  B.sum <-  sum(dfB$end-dfB$start)
+  E.coverage <- (E.sum/(Max-Min))*100
+  A.coverage <- (A.sum/(Max-Min))*100
+  B.coverage <- (B.sum/(Max-Min))*100
+  cat(paste("E coverage percent = ", round(E.coverage, 0), "\n A coverage percent" ,round( A.coverage,0), "\n B coverage percent= ",round( B.coverage,0),"\n"), sep = " ")
+}#distribution.of.hotspost#
