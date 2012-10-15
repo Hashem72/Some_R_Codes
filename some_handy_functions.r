@@ -1,15 +1,68 @@
 #Note: you may need to use  R-2.14.1 with to loading the following libraries: 
-#library(plyr)
-#library(ggplot2)
-#library(reshape2)
+library(plyr)
+library(ggplot2)
+library(reshape2)
 
+
+k.mer.as.data.frame <- function(RealKMersFile, BgKmersFile){
+  tab5rows  <- read.table(RealKMersFile, nrows = 5)
+  classes   <- sapply(tab5rows,class)
+  Data.Real <- read.table(RealKMersFile, comment.char = "", colClasses = classes)
+
+  tab5rowsBG <- read.table(BgKmersFile, nrows =5)
+  classesBG  <- sapply(tab5rowsBG, class)
+  Data.Bg <- read.table(BgKmersFile, comment.char = "", colClasses = classesBG)
+  Bg.Freq <- Data.Bg[,2]
+
+  Combind.Data <- cbind(Data.Real, Bg.Freq)
+  
+  colNames <- c("kmer","Real_Tags_Frequency", "BG_Tags_Frequency")
+  colnames(Combind.Data) <- colNames
+  
+  data.as.df <- as.data.frame(Combind.Data)
+  data.as.df
+}#k.mer.as.data.frame#
+
+
+
+
+density.file.as.data.frame <- function(densityFile){
+  tab5rows <- read.table(densityFile, nrows =5)
+  classes <- sapply(tab5rows, class)
+  data <- read.table(densityFile, comment.char = "", sep= "\t", colClasses = classes)
+  colName <- c("A", "B", "C")
+  colnames(data) <- colName
+  data.as.df <- as.data.frame(data)
+  data.as.df
+}#density.file.as.data.frame#
+
+scatterplots.as.matrix <- function(fileName, colNames = c("A","B", "C")){
+  par(cex=2, lwd =3, col.axis=300, col.lab=300, col.main=300, col.sub=300, fg=300)
+  df = density.file.as.data.frame(fileName)
+  numb.of.names = length(colNames)
+  num.of.cols = ncol(df)
+  if(numb.of.names != num.of.cols){
+    stop(paste("there are ",  num.of.cols, "columns but you passed only " , numb.of.names," names!", sep= " "))
+  }
+  colnames(df) = colNames
+  
+  
+  df.r = abs(cor(df))
+  df.color = dmat.color(df.r)
+  df.order = order.single(df.r)
+  cpairs(df, df.order, panel.colors=df.color, gap=0.5, main="variables ordered and colored by correlation")
+  cor(df)
+}#scatterplots.as.matrix#
 
 
 bed.as.data.frame <- function(aBedFile){
   #will read a bed file and return it as a data frame
   #bed files must have either 3 or 6 or 9 columns
 
-  data <-  read.table(aBedFile)
+  #for large tables it would be faster if we define colClasses parameter:
+  tab5rows <- read.table(aBedFile,  nrows = 5)
+  classes <- sapply(tab5rows, class)
+  data <-  read.table(aBedFile, comment.char = "", colClasses = classes)
   numCol <- ncol(data)
   if(numCol == 3){
     colName = c("chrom", "start", "end")
@@ -110,10 +163,17 @@ draw.pwm <- function(pwm){
 }#draw.pwm#
 
 
-#  p<-ggplot(melt(bval,varnames=c("nt","pos")),aes(x=pos,y=value,label=nt))+
-#    geom_abline(aes(slope=0), colour = "grey",size=2)+
-#    geom_text(aes(colour=factor(nt)),size=8)+
-#    opts(legend.position="none")+
-#    scale_x_continuous(name="Position",breaks=1:ncol(bval))+
-#    scale_y_continuous(name="Log relative frequency")
-#  return(p)
+PLOT.WEIGHTS.FOR.EACH.BASE <- function(dataFile,Main){
+  pwm_data<- scan(file= dataFile, sep =",", quiet = TRUE)
+  pwm_matrix <- matrix(pwm_data, ncol =4, byrow = TRUE)
+  plot(pwm_matrix[,1],col = 'red', lwd =3, type = 'l', ylab= 'weight', xlab= 'position',ylim= c(-2,1),main = Main)
+lines(pwm_matrix[,2], col = 'blue', lwd =3)
+lines(pwm_matrix[,3], col = 'green', lwd =3)
+lines(pwm_matrix[,4], col = 'grey', lwd =3)
+legend('topright', legend = c("a","c","g","t"), lty=1:4,col = c("red", "blue","green", "grey"), pt.bg = 'orange', pt.lwd =3, lwd =2, bg= 'khaki', ncol =2)
+
+}#PLOT.WEIGHTS.FOR.EACH.BASE#
+
+
+
+

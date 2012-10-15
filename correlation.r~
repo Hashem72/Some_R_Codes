@@ -1,0 +1,24 @@
+make.correlation.over.cumulative.sum <- function(df.of.densities){
+  
+  numbero.of.rows  = ncol(df.of.densities)
+  diff =  numbero.of.rows -3
+  print(paste(diff))
+  result = matrix(nrow = diff, ncol = 3)
+  
+  for(i in 1:3){
+    sum = df.of.densities[,4]
+    
+    one.cor = cor(df.of.densities[,i], df.of.densities[,4])
+    result[1,i] =  one.cor
+    print(paste("one.cor = ", one.cor, sep = " "))
+    col.counter =2
+    for(j in 5:numbero.of.rows){
+      sum = sum  + df.of.densities[,j]
+      cumulative.cor = cor(df.of.densities[,i],sum)
+       result[col.counter,i] = cumulative.cor
+       print(paste("i= ", i, "j = ", j, " cor= ", cumulative.cor, sep = " "))
+      col.counter =  col.counter + 1
+    }
+  }
+   result
+}#
