@@ -1,0 +1,12 @@
+HelaS3narrowPeakFileName  = "/nfs/th_group/hk3/SYD_TFS/HelaS3/All/Chr22/Chr22_Sorted/HelaS3_Union_of_Peaks.bed"
+GM12878NarrowPeakFileName = "/nfs/th_group/hk3/SYD_TFS/Gm12878/All/Chr22/Chr22_Sorted/GM12878_union_of_peaks.bed"
+GM12878NarrowPeakFileNameLongPeakRemoved = "/nfs/th_group/hk3/SYD_TFS/Gm12878/All/Chr22/Chr22_Sorted/GM12878_union_of_peaks_Long_Peak_Removed.npf"
+
+
+get.lengths.of.peaks <- function(fileOfPeaks){
+  peaks = read.table(fileOfPeaks)
+  Lengths =  peaks[,3] - peaks[,2]
+  Lengths
+  
+}#get.lengths.of.peaks#
+

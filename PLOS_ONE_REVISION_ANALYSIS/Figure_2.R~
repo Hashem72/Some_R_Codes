@@ -1,0 +1,45 @@
+
+get.histograms <- function(Histon.Scores.File, K562.Scores.File){
+ K562.H3K4me3.Bias.Scores = scan(file = Histon.Scores.File )
+  K562.Bias.Scores        = scan(file= K562.Scores.File)
+ Hist1 = hist(K562.Bias.Scores, breaks = 100)
+ Hist2 = hist(K562.H3K4me3.Bias.Scores, breaks = 100)
+ plot(Hist1, col= 'blue', main = 'Distribution of bias scores', ylab= 'frequency', xlab='scores', ylim= c(0,13000))
+ plot(Hist2,  col=rgb(1, 0, 0, 0.5), add= TRUE)
+ legend('topleft', legend= c('K562-H3K4me3', 'K562'), text.col= c('red', 'blue'), fill = c('red', 'blue'))
+ 
+}#get.histograms#
+
+
+
+H3K4me3.Scores.File  = "/nfs/th_group/hk3/wgEncodeUwHistone/K562_Histone/bias_scores.txt"
+K562.Scores.File     =  "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Shift_Effects/bias_scores_fromoffset_5_length_15_shift_80.txt"
+
+
+get.histograms(H3K4me3.Scores.File, K562.Scores.File)
+
+get.box.plot <- function(Histon.Scores.File, K562.Scores.File){
+   K562.H3K4me3.Bias.Scores = scan(file = Histon.Scores.File )
+   K562.Bias.Scores        = scan(file= K562.Scores.File)
+   Scores  = list()
+   Scores[[1]] = K562.H3K4me3.Bias.Scores
+   Scores[[2]] = K562.Bias.Scores
+   boxplot(Scores, col = c('red', 'blue'), names = c('K562-H3K4me3', 'K562'), ylab='bais scores')
+ }#get.box.plot#
+
+
+
+pdf(file= "/nfs/users/nfs_h/hk3/My_R_Scripts/Figures/PLOS_ONE_REVISION/Figure_2_Histogram.pdf", height=6, width=6)
+get.histograms(H3K4me3.Scores.File, K562.Scores.File)
+dev.off()
+
+pdf(file= "/nfs/users/nfs_h/hk3/My_R_Scripts/Figures/PLOS_ONE_REVISION/Figure_2_boxplot.pdf", height=6, width=8)
+get.box.plot(H3K4me3.Scores.File, K562.Scores.File)
+dev.off()
+
+
+pdf(file= "/nfs/users/nfs_h/hk3/My_R_Scripts/Figures/PLOS_ONE_REVISION/Figure_2_Histogram_and_boxplot.pdf", height=6, width=14)
+par(mfrow=c(1,2))
+get.histograms(H3K4me3.Scores.File, K562.Scores.File)
+get.box.plot(H3K4me3.Scores.File, K562.Scores.File)
+dev.off()

@@ -38,6 +38,7 @@ DRAW.SEQLOGO.FROM.FREQUENCY.OF.NUCLEOTIDES <- function(dtatFile){
 
 
 
+
 READ_DATA_FROAM_A_TSV_FILE<- function(dataFile){
 	rowNames  <- c("A","C","G","T")
 	table     <- read.table(file = dataFile, sep = "\t")

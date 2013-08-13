@@ -26,8 +26,8 @@ PLOT_COMPOSITION_GRAPHS_2 <- function(coreDataFile, flankDataFile, Title, flank,
 	max_length = (2*flank)+core+100
 	print(paste( "core is ",core, "max length is ", max_length), sep = "  ")
 	Xlim = c(1,max_length)
-	ymin = 0.0
-	ymax  =1
+	ymin = 0.2
+	ymax  =0.8
 	Ylim = c(ymin, ymax)
 	Xlab = "sequence postion"
 	Ylab = "average [g+c]"
@@ -38,49 +38,89 @@ PLOT_COMPOSITION_GRAPHS_2 <- function(coreDataFile, flankDataFile, Title, flank,
 	leftTail = flankDataAsTable$V2[(flank+1):length(flankDataAsTable$V2)]
 	x_leftTail = flankDataAsTable$V1[(flank+1):length(flankDataAsTable$V1)]
 	lines(x_leftTail, leftTail, col = 'black', lwd =2)
-#	for(i in seq(0,1, by =0.1)){
-#		
-#		abline(h=i, lty = 2, col = colors()[6])
-#		
-#		}
+	for(i in seq(0.2, 0.8, by =0.1)){
+		
+		abline(h=i, lty = 'dashed', col = 'grey',lwd=2 )
+		
+		}
 	#points(core, col = 'red', lwd = 3)
 	}#PLOT_COMPOSITION_GRAPHS_2#
 
 ###################################### UW #######################################
 
+#Encode DHS:
+###### K562
+
+K562.Core.UW.DHS.Encode     = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Seq_Composition_Analysis/200_core_UW_DHS_K562.txt"
+K562.Flanking.UW.DHS.Encode = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Seq_Composition_Analysis/200_flanking_UW_DHS_K562.txt"
+K562.Title.UW.DHS.Encode    = "K562: Encode DHS"
+
+### Gm12878
+Gm12878.Core.UW.DHS.Encode     = "/nfs/th_group/hk3/UW_DNaseI_HS/Gm12878_For_Paper_Analysis/Seq_Composition_Analysis/200_core_UW_DHS_Gm12878.txt"
+Gm12878.Flanking.UW.DHS.Encode = "/nfs/th_group/hk3/UW_DNaseI_HS/Gm12878_For_Paper_Analysis/Seq_Composition_Analysis/200_flanking_UW_DHS_Gm12878.txt"
+Gm12878.Title.UW.DHS.Encode    = "Gm12878: Encode DHS"
+
+ ### H1hesc
+H1hesc.Core.UW.DHS.Encode     = "/nfs/th_group/hk3/UW_DNaseI_HS/H1hesc_For_Paper_Analysis/Seq_Composition_Analysis/200_core_UW_DHS_H1hesc.txt"
+H1hesc.Flanking.UW.DHS.Encode = "/nfs/th_group/hk3/UW_DNaseI_HS/H1hesc_For_Paper_Analysis/Seq_Composition_Analysis/200_flanking_UW_DHS_H1hesc.txt"
+H1hesc.Title.UW.DHS.Encode    = "H1hesc: Encode DHS"
+
+
+pdf("Sequence_Bias_at_Encode_UW_DHSs.pdf", width = 12, height = 4)
+par(cex=2, lwd =1, col.axis='black', col.lab='black', col.main='black', col.sub='black', fg='black', cex.axis=1.1, mfrow=c(1,3))
+PLOT_COMPOSITION_GRAPHS_2(K562.Core.UW.DHS.Encode, K562.Flanking.UW.DHS.Encode, K562.Title.UW.DHS.Encode, 200, 100 )
+PLOT_COMPOSITION_GRAPHS_2(Gm12878.Core.UW.DHS.Encode, Gm12878.Flanking.UW.DHS.Encode, Gm12878.Title.UW.DHS.Encode, 200, 100)
+PLOT_COMPOSITION_GRAPHS_2(H1hesc.Core.UW.DHS.Encode, H1hesc.Flanking.UW.DHS.Encode, H1hesc.Title.UW.DHS.Encode, 200, 100)
+title("Sequence Bias at Encode DHSs", outer= TRUE, line = -1.3)
+dev.off()
+
+
+########################################## switching off the oscilations #################
+
 ## K562
-Core.UW.Less.Than.0 = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Seq_Composition_Analysis/200_core_less_than_0.txt"
-Flanking.UW.Less.Than.0 = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Seq_Composition_Analysis/200_flanking_less_than_0.txt"
-Title.UW.Less.Than.0   = "UW K562 t<0"
 
-Core.UW.Greater.Than.0 = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Seq_Composition_Analysis/200_core_greater_than_0.txt"
-Flanking.UW.Greater.Than.0 = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Seq_Composition_Analysis/200_flanking_greater_than_0.txt"
-Title.UW.Greater.Than.0   = "UW K562 t>0"    
+K562.Core.UW.Less.Than.1 = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Seq_Composition_Analysis/200_core_less_than_1.txt"
+K562.Flanking.UW.Less.Than.1 = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Seq_Composition_Analysis/200_flanking_less_than_1.txt"
+K562.Title.UW.Less.Than.1   = "K562: un-biased"
 
-Core.UW.Less.Than.1 = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Seq_Composition_Analysis/200_core_less_than_1.txt"
-Flanking.UW.Less.Than.1 = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Seq_Composition_Analysis/200_flanking_less_than_1.txt"
-Title.UW.Less.Than.1   = "UW K562 t<1"
+K562.Core.UW.Greater.Than.1 = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Seq_Composition_Analysis/200_core_greater_than_1.txt"
+K562.Flanking.UW.Greater.Than.1 = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Seq_Composition_Analysis/200_flanking_greater_than_1.txt"
+K562.Title.UW.Greater.Than.1   = "K562: biased "    
 
-Core.UW.Greater.Than.1 = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Seq_Composition_Analysis/200_core_greater_than_1.txt"
-Flanking.UW.Greater.Than.1 = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Seq_Composition_Analysis/200_flanking_greater_than_1.txt"
-Title.UW.Greater.Than.1   = "UW K562 t>1"    
+#Gm12878
 
+Gm12878.Core.UW.Less.Than.1 = "/nfs/th_group/hk3/UW_DNaseI_HS/Gm12878_For_Paper_Analysis/Seq_Composition_Analysis/200_core_less_than_1.txt"
+Gm12878.Flanking.UW.Less.Than.1 = "/nfs/th_group/hk3/UW_DNaseI_HS/Gm12878_For_Paper_Analysis/Seq_Composition_Analysis/200_flanking_less_than_1.txt"
+Gm12878.Title.UW.Less.Than.1   = "Gm12878: un-biased"
 
-Core.UW.Less.Than.2 = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Seq_Composition_Analysis/200_core_less_than_2.txt"
-Flanking.UW.Less.Than.2 = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Seq_Composition_Analysis/200_flanking_less_than_2.txt"
-Title.UW.Less.Than.2   = "UW K562 t<2"
+Gm12878.Core.UW.Greater.Than.1 = "/nfs/th_group/hk3/UW_DNaseI_HS/Gm12878_For_Paper_Analysis/Seq_Composition_Analysis/200_core_greater_than_1.txt"
+Gm12878.Flanking.UW.Greater.Than.1 = "/nfs/th_group/hk3/UW_DNaseI_HS/Gm12878_For_Paper_Analysis/Seq_Composition_Analysis/200_flanking_greater_than_1.txt"
+Gm12878.Title.UW.Greater.Than.1   = "Gm12878: biased"    
 
-Core.UW.Greater.Than.2 = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Seq_Composition_Analysis/200_core_greater_than_2.txt"
-Flanking.UW.Greater.Than.2 = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Seq_Composition_Analysis/200_flanking_greater_than_2.txt"
-Title.UW.Greater.Than.2   = "UW K562 t>2"    
+#H1hesc
+
+H1hesc.Core.UW.Less.Than.1 = "/nfs/th_group/hk3/UW_DNaseI_HS/H1hesc_For_Paper_Analysis/Seq_Composition_Analysis/200_core_less_than_1.txt"
+H1hesc.Flanking.UW.Less.Than.1 = "/nfs/th_group/hk3/UW_DNaseI_HS/H1hesc_For_Paper_Analysis/Seq_Composition_Analysis/200_flanking_less_than_1.txt"
+H1hesc.Title.UW.Less.Than.1   = "H1hesc: un-biased"
+
+H1hesc.Core.UW.Greater.Than.1 = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Seq_Composition_Analysis/200_core_greater_than_1.txt"
+H1hesc.Flanking.UW.Greater.Than.1 = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Seq_Composition_Analysis/200_flanking_greater_than_1.txt"
+H1hesc.Title.UW.Greater.Than.1   = "H1hesc: biased"    
+
+pdf("Bias_vs_Unbised.pdf")
 
 par(cex=2, lwd =1, col.axis='black', col.lab='black', col.main='black', col.sub='black', fg=200, cex.axis=1.1, mfrow=c(3,2))
-PLOT_COMPOSITION_GRAPHS_2(Core.UW.Less.Than.0, Flanking.UW.Less.Than.0, Title.UW.Less.Than.0, 200, 100)
-PLOT_COMPOSITION_GRAPHS_2(Core.UW.Greater.Than.0, Flanking.UW.Greater.Than.0, Title.UW.Greater.Than.0, 200, 100)
-PLOT_COMPOSITION_GRAPHS_2(Core.UW.Less.Than.1, Flanking.UW.Less.Than.1, Title.UW.Less.Than.1, 200, 100)
-PLOT_COMPOSITION_GRAPHS_2(Core.UW.Greater.Than.1, Flanking.UW.Greater.Than.1, Title.UW.Greater.Than.1, 200, 100)
-PLOT_COMPOSITION_GRAPHS_2(Core.UW.Less.Than.2, Flanking.UW.Less.Than.2, Title.UW.Less.Than.2, 200, 100)
-PLOT_COMPOSITION_GRAPHS_2(Core.UW.Greater.Than.2, Flanking.UW.Greater.Than.2, Title.UW.Greater.Than.2, 200, 100)
+
+PLOT_COMPOSITION_GRAPHS_2(K562.Core.UW.Less.Than.1, K562.Flanking.UW.Less.Than.1, K562.Title.UW.Less.Than.1, 200, 100)
+PLOT_COMPOSITION_GRAPHS_2(K562.Core.UW.Greater.Than.1, K562.Flanking.UW.Greater.Than.1, K562.Title.UW.Greater.Than.1, 200, 100)
+
+PLOT_COMPOSITION_GRAPHS_2(Gm12878.Core.UW.Less.Than.1, Gm12878.Flanking.UW.Less.Than.1, Gm12878.Title.UW.Less.Than.1, 200, 100)
+PLOT_COMPOSITION_GRAPHS_2(Gm12878.Core.UW.Greater.Than.1, Gm12878.Flanking.UW.Greater.Than.1, Gm12878.Title.UW.Greater.Than.1, 200, 100)
+
+PLOT_COMPOSITION_GRAPHS_2(H1hesc.Core.UW.Less.Than.1, H1hesc.Flanking.UW.Less.Than.1, H1hesc.Title.UW.Less.Than.1, 200, 100)
+PLOT_COMPOSITION_GRAPHS_2(H1hesc.Core.UW.Greater.Than.1, H1hesc.Flanking.UW.Greater.Than.1, H1hesc.Title.UW.Greater.Than.1, 200, 100)
+title("Effect of bias in tags on bias in DHS", outer = TRUE, line = -1.3)
+dev.off()
 
    ########################### gc shift
 par(mfrow=c(2,1))

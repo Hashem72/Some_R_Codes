@@ -1,0 +1,1886 @@
+
+R version 2.15.0 (2012-03-30)
+Copyright (C) 2012 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+Platform: x86_64-unknown-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> ### for more information about insalling and running ZINBA look at: https://code.google.com/p/zinba/wiki/UsingZINBA
+> # bsub -q long -o zinba_0.05_%J.output -e zinba_0.05_%J.err -M8000000 -R"select[mem>8000] rusage[mem=8000]" /software/bin/R-2.15 CMD BATCH ZINBA_Analysis.r
+> library(zinba)
+> 
+> # the following function must call only once, unless one of the parameters changes
+> #generateAlignability(
+> #                     mapdir      ="/nfs/th_group/hk3/MAPPABLE_DATA_HG19_For_ZINBA/Human",
+> #                     outdir      = "/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome",
+> #                    athresh      = 1,      #number of hits per read allowed during mapping process
+> #                     extension   = 150,  # average fragment library length
+> #                     twoBitFile  = "/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit"
+> #                     )
+> basealigncount(
++                inputfile  ="/nfs/th_group/hk3/UW_DNaseI_HS/K562/wgEncodeUwDnaseK562AlnRep1.bed",
++                outputfile = "/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount",
++                extension  = 150,
++                filetype   ="bed",
++                twoBitFile="/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit"
++                )
+
+Importing reads from file /nfs/th_group/hk3/UW_DNaseI_HS/K562/wgEncodeUwDnaseK562AlnRep1.bed ....
+	Reads are formatted as bed ....
+	Extending reads by 150 bp....
+	Getting chromosome lengths from .2bit file: /nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+		For chr1 length is 249250621
+		For chr2 length is 243199373
+		For chr3 length is 198022430
+		For chr4 length is 191154276
+		For chr5 length is 180915260
+		For chr6 length is 171115067
+		For chr7 length is 159138663
+		For chrX length is 155270560
+		For chr8 length is 146364022
+		For chr9 length is 141213431
+		For chr10 length is 135534747
+		For chr11 length is 135006516
+		For chr12 length is 133851895
+		For chr13 length is 115169878
+		For chr14 length is 107349540
+		For chr15 length is 102531392
+		For chr16 length is 90354753
+		For chr17 length is 81195210
+		For chr18 length is 78077248
+		For chr20 length is 63025520
+		For chrY length is 59373566
+		For chr19 length is 59128983
+		For chr22 length is 51304566
+		For chr21 length is 48129895
+		For chr6_ssto_hap7 length is 4928567
+		For chr6_mcf_hap5 length is 4833398
+		For chr6_cox_hap2 length is 4795371
+		For chr6_mann_hap4 length is 4683263
+		For chr6_apd_hap1 length is 4622290
+		For chr6_qbl_hap6 length is 4611984
+		For chr6_dbb_hap3 length is 4610396
+		For chr17_ctg5_hap1 length is 1680828
+		For chr4_ctg9_hap1 length is 590426
+		For chr1_gl000192_random length is 547496
+		For chrUn_gl000225 length is 211173
+		For chr4_gl000194_random length is 191469
+		For chr4_gl000193_random length is 189789
+		For chr9_gl000200_random length is 187035
+		For chrUn_gl000222 length is 186861
+		For chrUn_gl000212 length is 186858
+		For chr7_gl000195_random length is 182896
+		For chrUn_gl000223 length is 180455
+		For chrUn_gl000224 length is 179693
+		For chrUn_gl000219 length is 179198
+		For chr17_gl000205_random length is 174588
+		For chrUn_gl000215 length is 172545
+		For chrUn_gl000216 length is 172294
+		For chrUn_gl000217 length is 172149
+		For chr9_gl000199_random length is 169874
+		For chrUn_gl000211 length is 166566
+		For chrUn_gl000213 length is 164239
+		For chrUn_gl000220 length is 161802
+		For chrUn_gl000218 length is 161147
+		For chr19_gl000209_random length is 159169
+		For chrUn_gl000221 length is 155397
+		For chrUn_gl000214 length is 137718
+		For chrUn_gl000228 length is 129120
+		For chrUn_gl000227 length is 128374
+		For chr1_gl000191_random length is 106433
+		For chr19_gl000208_random length is 92689
+		For chr9_gl000198_random length is 90085
+		For chr17_gl000204_random length is 81310
+		For chrUn_gl000233 length is 45941
+		For chrUn_gl000237 length is 45867
+		For chrUn_gl000230 length is 43691
+		For chrUn_gl000242 length is 43523
+		For chrUn_gl000243 length is 43341
+		For chrUn_gl000241 length is 42152
+		For chrUn_gl000236 length is 41934
+		For chrUn_gl000240 length is 41933
+		For chr17_gl000206_random length is 41001
+		For chrUn_gl000232 length is 40652
+		For chrUn_gl000234 length is 40531
+		For chr11_gl000202_random length is 40103
+		For chrUn_gl000238 length is 39939
+		For chrUn_gl000244 length is 39929
+		For chrUn_gl000248 length is 39786
+		For chr8_gl000196_random length is 38914
+		For chrUn_gl000249 length is 38502
+		For chrUn_gl000246 length is 38154
+		For chr17_gl000203_random length is 37498
+		For chr8_gl000197_random length is 37175
+		For chrUn_gl000245 length is 36651
+		For chrUn_gl000247 length is 36422
+		For chr9_gl000201_random length is 36148
+		For chrUn_gl000235 length is 34474
+		For chrUn_gl000239 length is 33824
+		For chr21_gl000210_random length is 27682
+		For chrUn_gl000231 length is 27386
+		For chrUn_gl000229 length is 19913
+		For chrM length is 16571
+		For chrUn_gl000226 length is 15008
+		For chr18_gl000207_random length is 4262
+		For chr18_gl000207_random length is 4262
+
+Loading bed formatted reads
+	Skipped 0 reads
+	Loaded 35811565 reads
+	Sorting reads ...COMPLETE
+
+Calculating counts at each base
+Processing 35811565 reads
+	Processing chr1..........
+		Initializing length to 249250621
+		2641562 reads mapped to chr1
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chr2..........
+		Initializing length to 243199373
+		1694141 reads mapped to chr2
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chr3..........
+		Initializing length to 198022430
+		1318743 reads mapped to chr3
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chr4..........
+		Initializing length to 191154276
+		1089958 reads mapped to chr4
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chr5..........
+		Initializing length to 180915260
+		1313135 reads mapped to chr5
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chr6..........
+		Initializing length to 171115067
+		1690618 reads mapped to chr6
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chr7..........
+		Initializing length to 159138663
+		1420771 reads mapped to chr7
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chrX..........
+		Initializing length to 155270560
+		602379 reads mapped to chrX
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chr8..........
+		Initializing length to 146364022
+		927846 reads mapped to chr8
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chr9..........
+		Initializing length to 141213431
+		784728 reads mapped to chr9
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chr10..........
+		Initializing length to 135534747
+		969561 reads mapped to chr10
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chr11..........
+		Initializing length to 135006516
+		1207683 reads mapped to chr11
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chr12..........
+		Initializing length to 133851895
+		1046216 reads mapped to chr12
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chr13..........
+		Initializing length to 115169878
+		418837 reads mapped to chr13
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chr14..........
+		Initializing length to 107349540
+		489861 reads mapped to chr14
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chr15..........
+		Initializing length to 102531392
+		628838 reads mapped to chr15
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chr16..........
+		Initializing length to 90354753
+		699243 reads mapped to chr16
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chr17..........
+		Initializing length to 81195210
+		867545 reads mapped to chr17
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chr18..........
+		Initializing length to 78077248
+		483586 reads mapped to chr18
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chr20..........
+		Initializing length to 63025520
+		460818 reads mapped to chr20
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chr19..........
+		Initializing length to 59128983
+		917580 reads mapped to chr19
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chr22..........
+		Initializing length to 51304566
+		434301 reads mapped to chr22
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chr21..........
+		Initializing length to 48129895
+		308136 reads mapped to chr21
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing chrM..........
+		Initializing length to 16571
+		13395479 reads mapped to chrM
+		Printed results to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+-------- BASE ALIGN COUNTS COMPLETE SUCCESSFULLY --------
+> zinba(
++       align="/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome",
++       numProc=5,
++       threshold=0.05, #FDR threshold the default is 0.05 
++       seq= "/nfs/th_group/hk3/UW_DNaseI_HS/K562/wgEncodeUwDnaseK562AlnRep1.bed",
++       basecountfile="/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount",
++       filetype="bed",
++       #outfile="/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562/ZINBA_OUT_3_FDR_0.75",
++       outfile="/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05",
++       twoBit="/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit",
++       extension=150,
++       printFullOut=1,
++       refinepeaks=1,
++       broad=F,
++       input="none"
++       )
+[1] "parameters in effect:"
+$filelist
+NULL
+
+$formula
+NULL
+
+$formulaE
+NULL
+
+$formulaZ
+NULL
+
+$outfile
+[1] "/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05"
+
+$seq
+[1] "/nfs/th_group/hk3/UW_DNaseI_HS/K562/wgEncodeUwDnaseK562AlnRep1.bed"
+
+$align
+[1] "/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome"
+
+$input
+[1] "none"
+
+$twoBit
+[1] "/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit"
+
+$winSize
+[1] 250
+
+$offset
+[1] 125
+
+$cnvWinSize
+[1] 1e+05
+
+$cnvOffset
+[1] 2500
+
+$basecountfile
+[1] "/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount"
+
+$threshold
+[1] 0.05
+
+$peakconfidence
+[1] 0.95
+
+$tol
+[1] 1e-05
+
+$numProc
+[1] 5
+
+$buildwin
+[1] 1
+
+$winGap
+[1] 0
+
+$pWinSize
+[1] 200
+
+$pquant
+[1] 1
+
+$refinepeaks
+[1] 1
+
+$printFullOut
+[1] 1
+
+$method
+[1] "mixture"
+
+$initmethod
+[1] "count"
+
+$diff
+[1] 0
+
+$filetype
+[1] "bed"
+
+$extension
+[1] 150
+
+$cleanup
+[1] FALSE
+
+$selectmodel
+[1] TRUE
+
+$selectchr
+[1] "chr22"
+
+$selecttype
+[1] "dirty"
+
+$selectcovs
+[1] "gcPerc"         "align_perc"     "exp_cnvwin_log"
+
+$FDR
+[1] TRUE
+
+Loading required package: multicore
+Loading required package: doMC
+Loading required package: foreach
+Loading required package: iterators
+Loading required package: parallel
+
+Attaching package: ‘parallel’
+
+The following object(s) are masked from ‘package:multicore’:
+
+    mclapply, mcparallel, pvec
+
+
+Overwriting previously existing directory /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/
+
+--------BEGIN BUILDING WINDOW DATA-------- 2013-07-12 08:50:55 
+
+Importing reads from file /nfs/th_group/hk3/UW_DNaseI_HS/K562/wgEncodeUwDnaseK562AlnRep1.bed 
+	Filetype is bed 
+	Extension is 150 
+	Getting chromosome lengths from .2bit file: /nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+		For chr1 length is 249250621
+		For chr2 length is 243199373
+		For chr3 length is 198022430
+		For chr4 length is 191154276
+		For chr5 length is 180915260
+		For chr6 length is 171115067
+		For chr7 length is 159138663
+		For chrX length is 155270560
+		For chr8 length is 146364022
+		For chr9 length is 141213431
+		For chr10 length is 135534747
+		For chr11 length is 135006516
+		For chr12 length is 133851895
+		For chr13 length is 115169878
+		For chr14 length is 107349540
+		For chr15 length is 102531392
+		For chr16 length is 90354753
+		For chr17 length is 81195210
+		For chr18 length is 78077248
+		For chr20 length is 63025520
+		For chrY length is 59373566
+		For chr19 length is 59128983
+		For chr22 length is 51304566
+		For chr21 length is 48129895
+		For chr6_ssto_hap7 length is 4928567
+		For chr6_mcf_hap5 length is 4833398
+		For chr6_cox_hap2 length is 4795371
+		For chr6_mann_hap4 length is 4683263
+		For chr6_apd_hap1 length is 4622290
+		For chr6_qbl_hap6 length is 4611984
+		For chr6_dbb_hap3 length is 4610396
+		For chr17_ctg5_hap1 length is 1680828
+		For chr4_ctg9_hap1 length is 590426
+		For chr1_gl000192_random length is 547496
+		For chrUn_gl000225 length is 211173
+		For chr4_gl000194_random length is 191469
+		For chr4_gl000193_random length is 189789
+		For chr9_gl000200_random length is 187035
+		For chrUn_gl000222 length is 186861
+		For chrUn_gl000212 length is 186858
+		For chr7_gl000195_random length is 182896
+		For chrUn_gl000223 length is 180455
+		For chrUn_gl000224 length is 179693
+		For chrUn_gl000219 length is 179198
+		For chr17_gl000205_random length is 174588
+		For chrUn_gl000215 length is 172545
+		For chrUn_gl000216 length is 172294
+		For chrUn_gl000217 length is 172149
+		For chr9_gl000199_random length is 169874
+		For chrUn_gl000211 length is 166566
+		For chrUn_gl000213 length is 164239
+		For chrUn_gl000220 length is 161802
+		For chrUn_gl000218 length is 161147
+		For chr19_gl000209_random length is 159169
+		For chrUn_gl000221 length is 155397
+		For chrUn_gl000214 length is 137718
+		For chrUn_gl000228 length is 129120
+		For chrUn_gl000227 length is 128374
+		For chr1_gl000191_random length is 106433
+		For chr19_gl000208_random length is 92689
+		For chr9_gl000198_random length is 90085
+		For chr17_gl000204_random length is 81310
+		For chrUn_gl000233 length is 45941
+		For chrUn_gl000237 length is 45867
+		For chrUn_gl000230 length is 43691
+		For chrUn_gl000242 length is 43523
+		For chrUn_gl000243 length is 43341
+		For chrUn_gl000241 length is 42152
+		For chrUn_gl000236 length is 41934
+		For chrUn_gl000240 length is 41933
+		For chr17_gl000206_random length is 41001
+		For chrUn_gl000232 length is 40652
+		For chrUn_gl000234 length is 40531
+		For chr11_gl000202_random length is 40103
+		For chrUn_gl000238 length is 39939
+		For chrUn_gl000244 length is 39929
+		For chrUn_gl000248 length is 39786
+		For chr8_gl000196_random length is 38914
+		For chrUn_gl000249 length is 38502
+		For chrUn_gl000246 length is 38154
+		For chr17_gl000203_random length is 37498
+		For chr8_gl000197_random length is 37175
+		For chrUn_gl000245 length is 36651
+		For chrUn_gl000247 length is 36422
+		For chr9_gl000201_random length is 36148
+		For chrUn_gl000235 length is 34474
+		For chrUn_gl000239 length is 33824
+		For chr21_gl000210_random length is 27682
+		For chrUn_gl000231 length is 27386
+		For chrUn_gl000229 length is 19913
+		For chrM length is 16571
+		For chrUn_gl000226 length is 15008
+		For chr18_gl000207_random length is 4262
+		For chr18_gl000207_random length is 4262
+	Importing bed formatted reads
+	Skipped 0 reads
+	Imported 35811565 reads
+	Sorting reads ...COMPLETE
+
+Building window data
+
+Processing chr1
+	Initializing to length 249250621
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr1.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 0.00201173
+			Refining 0 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr1_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr1_win250bp_offset125bp.txt
+
+Processing chr2
+	Initializing to length 243199373
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr2.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 2.9869e-05
+			Refining 67 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr2_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr2_win250bp_offset125bp.txt
+
+Processing chr3
+	Initializing to length 198022430
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr3.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 1.7154e-05
+			Refining 108 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr3_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr3_win250bp_offset125bp.txt
+
+Processing chr4
+	Initializing to length 191154276
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr4.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 9.41945e-06
+			Refining 120 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr4_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr4_win250bp_offset125bp.txt
+
+Processing chr5
+	Initializing to length 180915260
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr5.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 0.000176098
+			Refining 4 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr5_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr5_win250bp_offset125bp.txt
+
+Processing chr6
+	Initializing to length 171115067
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr6.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 3.89249e-05
+			Refining 84 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr6_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr6_win250bp_offset125bp.txt
+
+Processing chr7
+	Initializing to length 159138663
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr7.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 3.51562e-05
+			Refining 73 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr7_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr7_win250bp_offset125bp.txt
+
+Processing chrX
+	Initializing to length 155270560
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chrX.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 4.04492e-05
+			Refining 17 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chrX_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chrX_win250bp_offset125bp.txt
+
+Processing chr8
+	Initializing to length 146364022
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr8.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 1.28459e-05
+			Refining 97 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr8_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr8_win250bp_offset125bp.txt
+
+Processing chr9
+	Initializing to length 141213431
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr9.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 2.45957e-05
+			Refining 54 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr9_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr9_win250bp_offset125bp.txt
+
+Processing chr10
+	Initializing to length 135534747
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr10.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 1.79094e-05
+			Refining 84 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr10_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr10_win250bp_offset125bp.txt
+
+Processing chr11
+	Initializing to length 135006516
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr11.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 4.56422e-05
+			Refining 43 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr11_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr11_win250bp_offset125bp.txt
+
+Processing chr12
+	Initializing to length 133851895
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr12.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 2.22851e-05
+			Refining 77 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr12_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr12_win250bp_offset125bp.txt
+
+Processing chr13
+	Initializing to length 115169878
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr13.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 6.06076e-06
+			Refining 48 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr13_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr13_win250bp_offset125bp.txt
+
+Processing chr14
+	Initializing to length 107349540
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr14.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 1.01731e-05
+			Refining 62 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr14_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr14_win250bp_offset125bp.txt
+
+Processing chr15
+	Initializing to length 102531392
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr15.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 1.68944e-05
+			Refining 59 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr15_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr15_win250bp_offset125bp.txt
+
+Processing chr16
+	Initializing to length 90354753
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr16.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 2.76451e-05
+			Refining 53 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr16_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr16_win250bp_offset125bp.txt
+
+Processing chr17
+	Initializing to length 81195210
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr17.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 4.19999e-05
+			Refining 43 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr17_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr17_win250bp_offset125bp.txt
+
+Processing chr18
+	Initializing to length 78077248
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr18.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 2.24866e-05
+			Refining 17 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr18_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr18_win250bp_offset125bp.txt
+
+Processing chr20
+	Initializing to length 63025520
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr20.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 2.00803e-05
+			Refining 43 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr20_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr20_win250bp_offset125bp.txt
+
+Processing chr19
+	Initializing to length 59128983
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr19.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 6.87322e-05
+			Refining 45 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr19_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr19_win250bp_offset125bp.txt
+
+Processing chr22
+	Initializing to length 51304566
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr22.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 9.98544e-05
+			Refining 15 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset125bp.txt
+
+Processing chr21
+	Initializing to length 48129895
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chr21.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 2.02962e-05
+			Refining 27 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr21_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr21_win250bp_offset125bp.txt
+
+Processing chrM
+	Initializing to length 16571
+	Mapping reads to chromosome......
+	Getting alignability info from:
+		/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/chrM.wig
+	Getting sequence from .2bit file:
+		/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	Getting counts for 100000bp windows..........
+		Refining boundaries....
+			Global variance is 47387
+			Refining 0 boundaries
+	Getting counts for zinba windows..........
+		Offset 0bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chrM_win250bp_offset0bp.txt
+		Offset 125bp......
+	Printed out data to /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chrM_win250bp_offset125bp.txt
+
+
+--------BUILD WINDOWS COMPLETE-------
+
+--------STARTING MODEL SELECTION-------- 2013-07-12 09:08:46 
+
+$`1`
+exp_count ~ 1
+<environment: 0x1b8ea88>
+
+$`2`
+exp_count ~ align_perc + 1
+<environment: 0x1b8ea88>
+
+$`3`
+exp_count ~ exp_cnvwin_log + 1
+<environment: 0x1b8ea88>
+
+$`4`
+exp_count ~ gcPerc + 1
+<environment: 0x1b8ea88>
+
+$`5`
+exp_count ~ align_perc + exp_cnvwin_log + 1
+<environment: 0x1b8ea88>
+
+$`6`
+exp_count ~ align_perc + gcPerc + 1
+<environment: 0x1b8ea88>
+
+$`7`
+exp_count ~ exp_cnvwin_log + gcPerc + 1
+<environment: 0x1b8ea88>
+
+$`8`
+exp_count ~ align_perc + exp_cnvwin_log + gcPerc + 1
+<environment: 0x1b8ea88>
+
+$`9`
+exp_count ~ align_perc + exp_cnvwin_log + align_perc:exp_cnvwin_log + 
+    1
+<environment: 0x1b8ea88>
+
+$`10`
+exp_count ~ align_perc + gcPerc + align_perc:gcPerc + 1
+<environment: 0x1b8ea88>
+
+$`11`
+exp_count ~ exp_cnvwin_log + gcPerc + exp_cnvwin_log:gcPerc + 
+    1
+<environment: 0x1b8ea88>
+
+$`12`
+exp_count ~ align_perc + exp_cnvwin_log + gcPerc + align_perc:exp_cnvwin_log + 
+    1
+<environment: 0x1b8ea88>
+
+$`13`
+exp_count ~ align_perc + exp_cnvwin_log + gcPerc + align_perc:gcPerc + 
+    1
+<environment: 0x1b8ea88>
+
+$`14`
+exp_count ~ align_perc + exp_cnvwin_log + gcPerc + exp_cnvwin_log:gcPerc + 
+    1
+<environment: 0x1b8ea88>
+
+$`15`
+exp_count ~ align_perc + exp_cnvwin_log + gcPerc + align_perc:exp_cnvwin_log + 
+    align_perc:gcPerc + 1
+<environment: 0x1b8ea88>
+
+$`16`
+exp_count ~ align_perc + exp_cnvwin_log + gcPerc + align_perc:exp_cnvwin_log + 
+    exp_cnvwin_log:gcPerc + 1
+<environment: 0x1b8ea88>
+
+$`17`
+exp_count ~ align_perc + exp_cnvwin_log + gcPerc + align_perc:gcPerc + 
+    exp_cnvwin_log:gcPerc + 1
+<environment: 0x1b8ea88>
+
+$`18`
+exp_count ~ align_perc + exp_cnvwin_log + gcPerc + align_perc:exp_cnvwin_log + 
+    align_perc:gcPerc + exp_cnvwin_log:gcPerc + 1
+<environment: 0x1b8ea88>
+
+$`19`
+exp_count ~ align_perc + exp_cnvwin_log + gcPerc + align_perc:exp_cnvwin_log + 
+    align_perc:gcPerc + exp_cnvwin_log:gcPerc + align_perc:exp_cnvwin_log:gcPerc + 
+    1
+<environment: 0x1b8ea88>
+
+.................................................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  5  completed out of  361 	...................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  3  completed out of  361 	..............................................................................................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+.
+model  7  completed out of  361 	................................................................................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+.
+model  8  completed out of  361 	.................................................................................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  9  completed out of  361 	.................................................................
+model  1  completed out of  361 	.............................................................................
+model  4  completed out of  361 	.....................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  11  completed out of  361 	..................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  12  completed out of  361 	.............................
+model  2  completed out of  361 	..........................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+.
+model  13  completed out of  361 	....................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  14  completed out of  361 	................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  15  completed out of  361 	....
+model  6  completed out of  361 	.................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  16  completed out of  361 	...........................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  17  completed out of  361 	..............................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+.
+model  18  completed out of  361 	....[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  19  completed out of  361 	........................................................................................................................................................................................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+.
+model  22  completed out of  361 	...........................................................
+model  10  completed out of  361 	.................................................................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  24  completed out of  361 	.................................................
+model  20  completed out of  361 	.........................................................................................................
+model  21  completed out of  361 	.......................
+model  23  completed out of  361 	.........[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  27  completed out of  361 	.....................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  26  completed out of  361 	...........................................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  28  completed out of  361 	...............................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+..
+model  31  completed out of  361 	..........[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  30  completed out of  361 	.........................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  32  completed out of  361 	.................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  33  completed out of  361 	...............[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  34  completed out of  361 	................................................
+model  25  completed out of  361 	........[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+.
+model  35  completed out of  361 	.......................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  36  completed out of  361 	..............................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  37  completed out of  361 	..................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  38  completed out of  361 	............................................................................
+model  29  completed out of  361 	................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+model  39  completed out of  361 	...................................
+model  40  completed out of  361 	............................................................
+model  43  completed out of  361 	..........
+model  41  completed out of  361 	...............
+model  42  completed out of  361 	.......................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+model  47  completed out of  361 	..................
+model  44  completed out of  361 	......................
+model  46  completed out of  361 	..........................................................
+model  45  completed out of  361 	................................
+model  48  completed out of  361 	...........................................................................................................................................................................................................................................................................................................................................................................................................................................................
+model  51  completed out of  361 	..
+model  50  completed out of  361 	.......................................................................................................
+model  52  completed out of  361 	.........
+model  53  completed out of  361 	...
+model  49  completed out of  361 	.......................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+model  55  completed out of  361 	........................................
+model  54  completed out of  361 	........................................
+model  58  completed out of  361 	....................................................................
+model  56  completed out of  361 	..........................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  60  completed out of  361 	.......
+model  57  completed out of  361 	.......................................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  62  completed out of  361 	.....................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  64  completed out of  361 	................................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  65  completed out of  361 	.........................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+.
+model  66  completed out of  361 	................................................................................................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  68  completed out of  361 	........................................................................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+.
+model  69  completed out of  361 	.
+model  61  completed out of  361 	.....................................
+model  59  completed out of  361 	.................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  70  completed out of  361 	.....[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  71  completed out of  361 	............................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+.
+model  72  completed out of  361 	...................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+.
+model  73  completed out of  361 	......[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  74  completed out of  361 	........................
+model  63  completed out of  361 	......[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  75  completed out of  361 	..........................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  76  completed out of  361 	..............................................................................................................................................................
+model  67  completed out of  361 	..................................................................................................................................................................................................................................
+model  77  completed out of  361 	................
+model  79  completed out of  361 	.........
+model  78  completed out of  361 	...........................................................................................
+model  80  completed out of  361 	.......................................................................................................................................
+model  81  completed out of  361 	................................................................................................................................................................................................................
+model  82  completed out of  361 	....................................................................................
+model  83  completed out of  361 	........................
+model  84  completed out of  361 	............................................................................
+model  85  completed out of  361 	.........................................................................................................
+model  86  completed out of  361 	...........................................................................................................................................................................................................
+model  87  completed out of  361 	................................................................................................
+model  88  completed out of  361 	..........................
+model  89  completed out of  361 	.................................................................................................................................
+model  90  completed out of  361 	...................................................................................
+model  91  completed out of  361 	.............................................................................................................................................................................
+model  92  completed out of  361 	.......................................................................................................................................
+model  93  completed out of  361 	.....................................
+model  94  completed out of  361 	.........................................................................................................................................................................
+model  95  completed out of  361 	.............................
+model  96  completed out of  361 	.......................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  98  completed out of  361 	.....................................................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  100  completed out of  361 	.......................................................................................
+model  97  completed out of  361 	......................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  102  completed out of  361 	....................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  103  completed out of  361 	........................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  104  completed out of  361 	..........................
+model  99  completed out of  361 	..............................................................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  106  completed out of  361 	.......[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  107  completed out of  361 	.......................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  108  completed out of  361 	.........................................................................
+model  101  completed out of  361 	................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  109  completed out of  361 	.....................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+.
+model  110  completed out of  361 	..........[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+.
+model  111  completed out of  361 	...........................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  112  completed out of  361 	..................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  113  completed out of  361 	.........[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  114  completed out of  361 	..........................
+model  105  completed out of  361 	.............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+model  115  completed out of  361 	........................
+model  119  completed out of  361 	....................................
+model  116  completed out of  361 	...................................................................................................
+model  118  completed out of  361 	
+model  117  completed out of  361 	.........................................................................................................................................................................................................................................................................................................................................................................................................................................................
+model  120  completed out of  361 	........
+model  122  completed out of  361 	................................................................................
+model  123  completed out of  361 	...............................................
+model  121  completed out of  361 	.......................................................................
+model  124  completed out of  361 	..............................................................................................................................................................................................................................................................................................................................................
+model  126  completed out of  361 	........................................................................................................
+model  125  completed out of  361 	.......................
+model  127  completed out of  361 	.....................
+model  128  completed out of  361 	............................................................................................
+model  129  completed out of  361 	.....................................................................................................................................................................................................................................................................................................................
+model  130  completed out of  361 	.................................................................................................
+model  131  completed out of  361 	.....................................
+model  134  completed out of  361 	........................
+model  132  completed out of  361 	.................................
+model  133  completed out of  361 	..............................................................................................................................................................................................................................................................................................................
+model  135  completed out of  361 	........................................................................................................
+model  136  completed out of  361 	.
+model  137  completed out of  361 	.....................................................................
+model  138  completed out of  361 	....
+model  139  completed out of  361 	..............................................................................................................................................................................................................................................................................................................................................
+model  140  completed out of  361 	........................................................................................................................
+model  142  completed out of  361 	...............
+model  141  completed out of  361 	...............
+model  143  completed out of  361 	...................................
+model  144  completed out of  361 	........................................................................................................................................................................................................................................................................................................................
+model  145  completed out of  361 	...........................................................................................................................................
+model  146  completed out of  361 	.........
+model  147  completed out of  361 	.................................
+model  148  completed out of  361 	.............................
+model  149  completed out of  361 	.................................................................................................................................................................................................................................................................................................................................
+model  150  completed out of  361 	.................................................................................................................................................
+model  153  completed out of  361 	........
+model  151  completed out of  361 	..................
+model  152  completed out of  361 	.....
+model  154  completed out of  361 	........................................................................................................................................................................................................................................................................................................
+model  155  completed out of  361 	..................................................................................................................................................................................
+model  157  completed out of  361 	.
+model  156  completed out of  361 	..............
+model  158  completed out of  361 	.........................
+model  159  completed out of  361 	...........................................................................................................................................................................................................................................................................................................................
+model  160  completed out of  361 	...................................................................................................................
+model  162  completed out of  361 	.............................
+model  161  completed out of  361 	...............................
+model  163  completed out of  361 	...........................
+model  164  completed out of  361 	.....................................................................................................................................................................................................................................................................................................................
+model  165  completed out of  361 	.........................................................................................................................
+model  166  completed out of  361 	.................................
+model  167  completed out of  361 	..................
+model  168  completed out of  361 	.......................................
+model  169  completed out of  361 	...............................................................................................................................................................................................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  174  completed out of  361 	...................................................................................................
+model  170  completed out of  361 	...........................................................................................................................................
+model  172  completed out of  361 	..........................
+model  171  completed out of  361 	........................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  176  completed out of  361 	.........
+model  173  completed out of  361 	....................................................................................................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  179  completed out of  361 	.[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+.[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  180  completed out of  361 	
+model  178  completed out of  361 	...................................................................................................................
+model  175  completed out of  361 	..............................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  183  completed out of  361 	...........................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  182  completed out of  361 	................................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  184  completed out of  361 	.......................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+.
+model  185  completed out of  361 	................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  186  completed out of  361 	..................................................
+model  177  completed out of  361 	......................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  187  completed out of  361 	.......................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  188  completed out of  361 	.............................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  189  completed out of  361 	.............................................................[1] "The estimated proportion of enrichment for   /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt  has exceeded 0.5, suggesting difficulty in estimating enrichment.  Switching to more conservative model"
+
+model  190  completed out of  361 	..................................................................
+model  181  completed out of  361 	.............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+model  191  completed out of  361 	.........
+model  192  completed out of  361 	...........................................................
+model  195  completed out of  361 	................................
+model  193  completed out of  361 	..........................
+model  194  completed out of  361 	........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+model  196  completed out of  361 	..............
+model  198  completed out of  361 	.........
+model  199  completed out of  361 	.....................................................
+model  197  completed out of  361 	.........................................................
+model  200  completed out of  361 	...............................................................................................................................................................................................................................................................................................................................................................................................................
+model  202  completed out of  361 	............................................................
+model  203  completed out of  361 	...........................................
+model  204  completed out of  361 	....................................................
+model  205  completed out of  361 	...
+model  201  completed out of  361 	...........................................................................................................................................................................................................................................................................................................................................................................................................................
+model  206  completed out of  361 	...............................
+model  210  completed out of  361 	................
+model  207  completed out of  361 	.............................
+model  208  completed out of  361 	.....................................................................................
+model  209  completed out of  361 	.......................................................................................................................................................................................................................................................................................................................................................
+model  212  completed out of  361 	.......
+model  211  completed out of  361 	..............................
+model  213  completed out of  361 	...........................................
+model  214  completed out of  361 	.......................................
+model  215  completed out of  361 	..........................................................................................................................................................................................................................................................................................................................................................................................................
+model  216  completed out of  361 	..........................
+model  217  completed out of  361 	...............
+model  219  completed out of  361 	......
+model  218  completed out of  361 	............................................................................
+model  220  completed out of  361 	.......................................................................................................................................................................................................................................................................................................................................................................................................
+model  221  completed out of  361 	................
+model  222  completed out of  361 	........................
+model  223  completed out of  361 	........
+model  224  completed out of  361 	............................................................................
+model  225  completed out of  361 	....................................................................................................................................................................................................................................................................................................................................................................................................................
+model  229  completed out of  361 	............
+model  226  completed out of  361 	...
+model  227  completed out of  361 	..........................
+model  228  completed out of  361 	....................................................
+model  230  completed out of  361 	...............................................................................................................................................................................................................................................................................................................................................................................................................................
+model  232  completed out of  361 	........
+model  231  completed out of  361 	.......
+model  234  completed out of  361 	......................
+model  233  completed out of  361 	........................................................
+model  235  completed out of  361 	..........................................................................................................................................................................................................................................................................................................................................................................................................
+model  238  completed out of  361 	....................................
+model  237  completed out of  361 	..............
+model  236  completed out of  361 	............
+model  239  completed out of  361 	..........................................................................
+model  240  completed out of  361 	.......................................................................................................................................................................................................................................................................................................................................................................................................................
+model  241  completed out of  361 	............
+model  242  completed out of  361 	..................
+model  243  completed out of  361 	.
+model  244  completed out of  361 	..................................................................................
+model  245  completed out of  361 	....................................................................................................................................................................................................................................................................................................................................................................................................................
+model  249  completed out of  361 	........................
+model  248  completed out of  361 	..............
+model  246  completed out of  361 	....
+model  247  completed out of  361 	............................
+model  250  completed out of  361 	....................................................................................................................................................................................................................................................................................................................................................................................................................
+model  251  completed out of  361 	...........................................................
+model  253  completed out of  361 	............
+model  252  completed out of  361 	................
+model  254  completed out of  361 	..................................................
+model  255  completed out of  361 	.....................................................................................................................................................................................................................................................................................................................................................................................
+model  256  completed out of  361 	..........................
+model  257  completed out of  361 	................................................
+model  258  completed out of  361 	.............................
+model  259  completed out of  361 	............................................................
+model  260  completed out of  361 	.................................................................................................................................................................................................................................................................................................................................................................................
+model  261  completed out of  361 	............
+model  262  completed out of  361 	.........................................
+model  263  completed out of  361 	.....................................
+model  264  completed out of  361 	...........................................................................
+model  265  completed out of  361 	.................................................................................................................................................................................................................................................................................................................................................................................
+model  267  completed out of  361 	.........................
+model  268  completed out of  361 	..........
+model  266  completed out of  361 	...
+model  269  completed out of  361 	......................................................................
+model  270  completed out of  361 	..........................................................................................................................................................................................................................................................................................................................................................................................
+model  272  completed out of  361 	.........
+model  271  completed out of  361 	..............................................
+model  273  completed out of  361 	...............................
+model  274  completed out of  361 	.................................................
+model  275  completed out of  361 	.................................................................................................................................................................................................................................................................................................................................
+model  276  completed out of  361 	........................................................
+model  277  completed out of  361 	.....................................................................
+model  278  completed out of  361 	................
+model  279  completed out of  361 	........................................................
+model  280  completed out of  361 	...............................................................................................................................................................................................................................................................................................................
+model  281  completed out of  361 	................................................................
+model  282  completed out of  361 	............................................................................................................
+model  284  completed out of  361 	..
+model  283  completed out of  361 	.....................................................................
+model  285  completed out of  361 	.....................................................................................................................................................................................................................................................................................
+model  286  completed out of  361 	....................................................................................
+model  287  completed out of  361 	..........................
+model  289  completed out of  361 	..........
+model  288  completed out of  361 	.......................................................................................
+model  290  completed out of  361 	...........................................................................................................................................................................................................................................................................
+model  291  completed out of  361 	..............................................................................................................
+model  292  completed out of  361 	............................................................
+model  294  completed out of  361 	....
+model  293  completed out of  361 	...................................................
+model  295  completed out of  361 	.............................................................................................................................................................................................................................................................................
+model  296  completed out of  361 	.......................................................................................................................
+model  297  completed out of  361 	........................................................................................
+model  299  completed out of  361 	...
+model  298  completed out of  361 	.......................
+model  300  completed out of  361 	...................................................................................................................................................................................................................................................................................................................
+model  301  completed out of  361 	.....................................................................................................................
+model  302  completed out of  361 	.......................................................................
+model  305  completed out of  361 	.......
+model  304  completed out of  361 	.
+model  303  completed out of  361 	.................................................................................................................................................................................................................................................................................................................................
+model  306  completed out of  361 	..................................................................................................................
+model  307  completed out of  361 	..............................
+model  308  completed out of  361 	....................
+model  310  completed out of  361 	.........................
+model  309  completed out of  361 	........................................................................................................................................................................................................................................................................................................................................
+model  311  completed out of  361 	...................................................................................................................................
+model  314  completed out of  361 	................
+model  312  completed out of  361 	........
+model  313  completed out of  361 	..........................
+model  315  completed out of  361 	................................................................................................................................................................................................................................................................................................................................................
+model  316  completed out of  361 	..........................................................................................................................
+model  317  completed out of  361 	.............................
+model  319  completed out of  361 	............
+model  318  completed out of  361 	...........................
+model  320  completed out of  361 	.........................................................................................................................................................................................................................................................................................................................................
+model  321  completed out of  361 	.......................................................................................................................................
+model  322  completed out of  361 	................
+model  324  completed out of  361 	.............
+model  323  completed out of  361 	.....
+model  325  completed out of  361 	.....................................................................................................................................................................................................................................................................................................................
+model  326  completed out of  361 	..........................................................................................................................................
+model  327  completed out of  361 	...........................................
+model  329  completed out of  361 	............
+model  328  completed out of  361 	............
+model  330  completed out of  361 	.......................................................................................................................................................................................................................................................................................................................................
+model  331  completed out of  361 	.........................................................................................................................
+model  332  completed out of  361 	...
+model  333  completed out of  361 	.....................................
+model  334  completed out of  361 	......................................
+model  335  completed out of  361 	.............................................................................................................................................................................................................................................................................................................................
+model  336  completed out of  361 	.........................................................................................................................
+model  337  completed out of  361 	.....
+model  338  completed out of  361 	.....................................
+model  339  completed out of  361 	................................
+model  340  completed out of  361 	................................................................................................................................................................................................................................................................................................................................................
+model  341  completed out of  361 	.......................................................................
+model  343  completed out of  361 	......................................................................
+model  342  completed out of  361 	......
+model  344  completed out of  361 	........
+model  345  completed out of  361 	..................................................................................................................................................................................................................................................................................................................
+model  346  completed out of  361 	............................................................................................................................
+model  347  completed out of  361 	..................
+model  348  completed out of  361 	........................................
+model  349  completed out of  361 	...................................................................
+model  350  completed out of  361 	..............................................................................................................................................................................................................................................................................
+model  351  completed out of  361 	..............................................................................
+model  352  completed out of  361 	.............................................
+model  353  completed out of  361 	.........................................................
+model  354  completed out of  361 	...................................................................
+model  355  completed out of  361 	....................................................................................................................................................................................................................................................................
+model  356  completed out of  361 	......................................................................................
+model  357  completed out of  361 	............................................
+model  358  completed out of  361 	.......................................
+model  359  completed out of  361 	..............................
+model  360  completed out of  361 	................................................................
+model  361  completed out of  361 	.............................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+model  4  completed out of  19 	..........................
+model  1  completed out of  19 	...................................................................................................................................................................................................................
+model  2  completed out of  19 	....................................................................
+model  3  completed out of  19 	..............................................................................................................................................................................................................................................................................................................................................................................................................................................
+model  5  completed out of  19 	.................................................
+model  6  completed out of  19 	......................................................................................
+model  7  completed out of  19 	.............................................................................................................................................................................................................................................................................................
+model  9  completed out of  19 	..........................................................................................................................................................................................................................................................................................................................................................................
+model  10  completed out of  19 	......................................
+model  8  completed out of  19 	........
+model  11  completed out of  19 	...............................................................................................................................................................................................................
+model  12  completed out of  19 	..................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+model  14  completed out of  19 	...........................................................................................................................................................................................
+model  15  completed out of  19 	...................
+model  13  completed out of  19 	.....
+model  16  completed out of  19 	........................................
+model  17  completed out of  19 	........................................................................................................................................................................................................................................................................................................
+model  18  completed out of  19 	..........
+model  19  completed out of  19 	Background formula is:
+	exp_count ~ align_perc + exp_cnvwin_log + gcPerc + align_perc:exp_cnvwin_log + 
+    1
+<environment: 0x1b8ea88>
+Enrichment formula is:
+	exp_count ~ align_perc + exp_cnvwin_log + gcPerc + align_perc:exp_cnvwin_log + 
+    1
+<environment: 0x1b8ea88>
+Zero-inflated formula is:
+	exp_count ~ align_perc + exp_cnvwin_log + gcPerc + align_perc:exp_cnvwin_log + 
+    1
+<environment: 0x1b8ea88>
+--------MODEL SELECTION COMPLETE-------- 2013-07-12 21:10:24 
+
+--------GETTING ENRICHED WINDOWS-------- 2013-07-12 21:10:24 
+
+........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr3_win250bp_offset0bp.txt
+	Selected number of peaks: 19384
+	2013-07-12 22:38:37	.............................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr4_win250bp_offset0bp.txt
+	Selected number of peaks: 15279
+	2013-07-12 22:51:20	..........................................................................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr5_win250bp_offset0bp.txt
+	Selected number of peaks: 16533
+	2013-07-12 23:12:45	.........
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr2_win250bp_offset0bp.txt
+	Selected number of peaks: 25075
+	2013-07-12 23:14:30	.........................................................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr1_win250bp_offset0bp.txt
+	Selected number of peaks: 34726
+	2013-07-12 23:35:47	....................................................................................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr3_win250bp_offset125bp.txt
+	Selected number of peaks: 19094
+	2013-07-13 00:01:30	..
+Time difference of 2.855904 hours
+.....................................................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr4_win250bp_offset125bp.txt
+	Selected number of peaks: 15119
+	2013-07-13 00:21:48	.
+Time difference of 3.192687 hours
+......................................................................................................................................................................................................................................................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr6_win250bp_offset0bp.txt
+	Selected number of peaks: 22820
+	2013-07-13 01:05:43	...................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr2_win250bp_offset125bp.txt
+	Selected number of peaks: 24880
+	2013-07-13 01:16:42	.
+Time difference of 4.108033 hours
+..
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr7_win250bp_offset0bp.txt
+	Selected number of peaks: 15147
+	2013-07-13 01:17:19	...
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr5_win250bp_offset125bp.txt
+	Selected number of peaks: 16483
+	2013-07-13 01:18:24	.
+Time difference of 4.136297 hours
+........................................................................................................................................................................................................................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr1_win250bp_offset125bp.txt
+	Selected number of peaks: 34713
+	2013-07-13 01:59:36	.
+Time difference of 4.823439 hours
+.....................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr6_win250bp_offset125bp.txt
+	Selected number of peaks: 22663
+	2013-07-13 02:05:07	
+Time difference of 2.05861 hours
+............
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr7_win250bp_offset125bp.txt
+	Selected number of peaks: 15239
+	2013-07-13 02:07:02	
+Time difference of 1.753139 hours
+.........................................................................................................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr8_win250bp_offset0bp.txt
+	Selected number of peaks: 13401
+	2013-07-13 02:30:34	.................................................................................................................................................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr9_win250bp_offset0bp.txt
+	Selected number of peaks: 10888
+	2013-07-13 02:57:31	...................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr11_win250bp_offset0bp.txt
+	Selected number of peaks: 18145
+	2013-07-13 03:02:01	......................................................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr10_win250bp_offset0bp.txt
+	Selected number of peaks: 14090
+	2013-07-13 03:17:46	...............................................................................................................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr8_win250bp_offset125bp.txt
+	Selected number of peaks: 13235
+	2013-07-13 03:40:09	..
+Time difference of 2.361681 hours
+......................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr9_win250bp_offset125bp.txt
+	Selected number of peaks: 10836
+	2013-07-13 03:48:51	
+Time difference of 1.819189 hours
+........................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr11_win250bp_offset125bp.txt
+	Selected number of peaks: 17581
+	2013-07-13 03:52:10	
+Time difference of 1.751585 hours
+............................................................................................................................................................................................................................................................................................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr10_win250bp_offset125bp.txt
+	Selected number of peaks: 14121
+	2013-07-13 04:27:08	..
+Time difference of 2.366961 hours
+................................................................................................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr12_win250bp_offset0bp.txt
+	Selected number of peaks: 16811
+	2013-07-13 04:42:58	...........................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr14_win250bp_offset0bp.txt
+	Selected number of peaks: 9532
+	2013-07-13 04:50:45	..............................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr13_win250bp_offset0bp.txt
+	Selected number of peaks: 4221
+	2013-07-13 04:53:45	..........................................................................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr15_win250bp_offset0bp.txt
+	Selected number of peaks: 10459
+	2013-07-13 05:06:53	........................................................................................................................................................................................................................................................................................................................................................................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr15_win250bp_offset125bp.txt
+	Selected number of peaks: 10429
+	2013-07-13 05:44:17	
+Time difference of 1.284593 hours
+...........
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr12_win250bp_offset125bp.txt
+	Selected number of peaks: 17263
+	2013-07-13 05:45:31	.
+Time difference of 2.089062 hours
+..............................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr14_win250bp_offset125bp.txt
+	Selected number of peaks: 9540
+	2013-07-13 05:48:16	.
+Time difference of 1.934728 hours
+...........
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr13_win250bp_offset125bp.txt
+	Selected number of peaks: 4290
+	2013-07-13 05:49:31	
+Time difference of 2.010559 hours
+...........................................................................................................................................................................................................................................................................................................................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr18_win250bp_offset0bp.txt
+	Selected number of peaks: 5520
+	2013-07-13 06:15:13	.........
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr16_win250bp_offset0bp.txt
+	Selected number of peaks: 11272
+	2013-07-13 06:15:56	............................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr20_win250bp_offset0bp.txt
+	Selected number of peaks: 7889
+	2013-07-13 06:20:55	.................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr17_win250bp_offset0bp.txt
+	Selected number of peaks: 14221
+	2013-07-13 06:26:28	..................................................................................................................................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr18_win250bp_offset125bp.txt
+	Selected number of peaks: 5702
+	2013-07-13 06:39:45	.
+Time difference of 51.49685 mins
+......................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr16_win250bp_offset125bp.txt
+	Selected number of peaks: 11325
+	2013-07-13 06:45:03	.
+Time difference of 1.012389 hours
+...................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr20_win250bp_offset125bp.txt
+	Selected number of peaks: 7972
+	2013-07-13 06:49:19	..
+Time difference of 59.78458 mins
+....................................................................................................................................................................................................................................................................................................................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr19_win250bp_offset0bp.txt
+	Selected number of peaks: 14224
+	2013-07-13 07:03:29	.............
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr17_win250bp_offset125bp.txt
+	Selected number of peaks: 14234
+	2013-07-13 07:04:04	..
+Time difference of 1.308631 hours
+....................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset0bp.txt
+	Selected number of peaks: 5125
+	2013-07-13 07:04:46	.................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr21_win250bp_offset0bp.txt
+	Selected number of peaks: 3933
+	2013-07-13 07:08:54	.........................................................................................................................................................................................................................................................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr22_win250bp_offset125bp.txt
+	Selected number of peaks: 5178
+	2013-07-13 07:22:17	
+Time difference of 37.19928 mins
+......................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr19_win250bp_offset125bp.txt
+	Selected number of peaks: 14241
+	2013-07-13 07:24:30	
+Time difference of 44.71885 mins
+..
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chr21_win250bp_offset125bp.txt
+	Selected number of peaks: 3849
+	2013-07-13 07:24:49	
+Time difference of 35.46522 mins
+..........................................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chrX_win250bp_offset0bp.txt
+	Selected number of peaks: 8982
+	2013-07-13 13:23:20	............................................................................................................................................................................................................................
+Processed /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/wgEncodeUwDnaseK562AlnRep1_chrX_win250bp_offset125bp.txt
+	Selected number of peaks: 9060
+	2013-07-13 23:08:31	
+Time difference of 21.86242 hours
+--------WINDOW ANALYSIS COMPLETE-------- 2013-07-13 23:08:37 
+
+--------MERGE WINDOWS AND REFINE PEAKS (no parallelization)-------- 2013-07-13 23:08:37 
+
+Threshold is 0.05
+
+Getting significant windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05.winlist
+	Threshold is 0.050000
+	Using qvalue as threshold
+	Data generated using mixture
+	Data format is expanded
+	Distance to collapse windows is 0
+Getting significant regions from mixture run
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr1.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr2.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr3.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr4.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr5.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr6.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr7.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chrX.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr8.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr9.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr10.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr11.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr12.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr13.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr14.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr15.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr16.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr17.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr18.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr20.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr19.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr22.wins...
+	Importing windows from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr21.wins...
+	Skipping line, /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/ZINBA_OUT_FDR_0.05_files/ZINBA_OUT_FDR_0.05_chr21.wins
+
+Imported 633766 coordinates
+
+Collapsed to 183383 non-overlapping regions
+
+Getting basecount data for all
+
+Getting chromosome lengths from .2bit file: /nfs/th_group/hk3/Human_Genome_Build/hg19.2bit
+	For chr1 length is 249250621
+	For chr2 length is 243199373
+	For chr3 length is 198022430
+	For chr4 length is 191154276
+	For chr5 length is 180915260
+	For chr6 length is 171115067
+	For chr7 length is 159138663
+	For chrX length is 155270560
+	For chr8 length is 146364022
+	For chr9 length is 141213431
+	For chr10 length is 135534747
+	For chr11 length is 135006516
+	For chr12 length is 133851895
+	For chr13 length is 115169878
+	For chr14 length is 107349540
+	For chr15 length is 102531392
+	For chr16 length is 90354753
+	For chr17 length is 81195210
+	For chr18 length is 78077248
+	For chr20 length is 63025520
+	For chrY length is 59373566
+	For chr19 length is 59128983
+	For chr22 length is 51304566
+	For chr21 length is 48129895
+	For chr6_ssto_hap7 length is 4928567
+	For chr6_mcf_hap5 length is 4833398
+	For chr6_cox_hap2 length is 4795371
+	For chr6_mann_hap4 length is 4683263
+	For chr6_apd_hap1 length is 4622290
+	For chr6_qbl_hap6 length is 4611984
+	For chr6_dbb_hap3 length is 4610396
+	For chr17_ctg5_hap1 length is 1680828
+	For chr4_ctg9_hap1 length is 590426
+	For chr1_gl000192_random length is 547496
+	For chrUn_gl000225 length is 211173
+	For chr4_gl000194_random length is 191469
+	For chr4_gl000193_random length is 189789
+	For chr9_gl000200_random length is 187035
+	For chrUn_gl000222 length is 186861
+	For chrUn_gl000212 length is 186858
+	For chr7_gl000195_random length is 182896
+	For chrUn_gl000223 length is 180455
+	For chrUn_gl000224 length is 179693
+	For chrUn_gl000219 length is 179198
+	For chr17_gl000205_random length is 174588
+	For chrUn_gl000215 length is 172545
+	For chrUn_gl000216 length is 172294
+	For chrUn_gl000217 length is 172149
+	For chr9_gl000199_random length is 169874
+	For chrUn_gl000211 length is 166566
+	For chrUn_gl000213 length is 164239
+	For chrUn_gl000220 length is 161802
+	For chrUn_gl000218 length is 161147
+	For chr19_gl000209_random length is 159169
+	For chrUn_gl000221 length is 155397
+	For chrUn_gl000214 length is 137718
+	For chrUn_gl000228 length is 129120
+	For chrUn_gl000227 length is 128374
+	For chr1_gl000191_random length is 106433
+	For chr19_gl000208_random length is 92689
+	For chr9_gl000198_random length is 90085
+	For chr17_gl000204_random length is 81310
+	For chrUn_gl000233 length is 45941
+	For chrUn_gl000237 length is 45867
+	For chrUn_gl000230 length is 43691
+	For chrUn_gl000242 length is 43523
+	For chrUn_gl000243 length is 43341
+	For chrUn_gl000241 length is 42152
+	For chrUn_gl000236 length is 41934
+	For chrUn_gl000240 length is 41933
+	For chr17_gl000206_random length is 41001
+	For chrUn_gl000232 length is 40652
+	For chrUn_gl000234 length is 40531
+	For chr11_gl000202_random length is 40103
+	For chrUn_gl000238 length is 39939
+	For chrUn_gl000244 length is 39929
+	For chrUn_gl000248 length is 39786
+	For chr8_gl000196_random length is 38914
+	For chrUn_gl000249 length is 38502
+	For chrUn_gl000246 length is 38154
+	For chr17_gl000203_random length is 37498
+	For chr8_gl000197_random length is 37175
+	For chrUn_gl000245 length is 36651
+	For chrUn_gl000247 length is 36422
+	For chr9_gl000201_random length is 36148
+	For chrUn_gl000235 length is 34474
+	For chrUn_gl000239 length is 33824
+	For chr21_gl000210_random length is 27682
+	For chrUn_gl000231 length is 27386
+	For chrUn_gl000229 length is 19913
+	For chrM length is 16571
+	For chrUn_gl000226 length is 15008
+	For chr18_gl000207_random length is 4262
+
+Getting basecount data from /nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562_whole_Genome/wgEncodeUwDnaseK562AlnRep1_0.05.basecount
+	Processing: fixedStep chrom=chr1 start=1 step=1
+		Loading data for chr1
+		Initializing length of 249250621
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chr2 start=1 step=1
+		Loading data for chr2
+		Initializing length of 243199373
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chr3 start=1 step=1
+		Loading data for chr3
+		Initializing length of 198022430
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chr4 start=1 step=1
+		Loading data for chr4
+		Initializing length of 191154276
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chr5 start=1 step=1
+		Loading data for chr5
+		Initializing length of 180915260
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chr6 start=1 step=1
+		Loading data for chr6
+		Initializing length of 171115067
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chr7 start=1 step=1
+		Loading data for chr7
+		Initializing length of 159138663
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chrX start=1 step=1
+		Loading data for chrX
+		Initializing length of 155270560
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chr8 start=1 step=1
+		Loading data for chr8
+		Initializing length of 146364022
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chr9 start=1 step=1
+		Loading data for chr9
+		Initializing length of 141213431
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chr10 start=1 step=1
+		Loading data for chr10
+		Initializing length of 135534747
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chr11 start=1 step=1
+		Loading data for chr11
+		Initializing length of 135006516
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chr12 start=1 step=1
+		Loading data for chr12
+		Initializing length of 133851895
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chr13 start=1 step=1
+		Loading data for chr13
+		Initializing length of 115169878
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chr14 start=1 step=1
+		Loading data for chr14
+		Initializing length of 107349540
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chr15 start=1 step=1
+		Loading data for chr15
+		Initializing length of 102531392
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chr16 start=1 step=1
+		Loading data for chr16
+		Initializing length of 90354753
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chr17 start=1 step=1
+		Loading data for chr17
+		Initializing length of 81195210
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chr18 start=1 step=1
+		Loading data for chr18
+		Initializing length of 78077248
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chr20 start=1 step=1
+		Loading data for chr20
+		Initializing length of 63025520
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chr19 start=1 step=1
+		Loading data for chr19
+		Initializing length of 59128983
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chr22 start=1 step=1
+		Loading data for chr22
+		Initializing length of 51304566
+		Starting position in chromosome is 1
+	Processing: fixedStep chrom=chr21 start=1 step=1
+		Loading data for chr21
+		Initializing length of 48129895
+		Starting position in chromosome is 1
+
+getSeqCountProfile COMPLETED SUCCESSFULLY
+Begin Peak Refinement
+Peak Refinement Complete
+
+--------ZINBA COMPLETE-------- 2013-07-13 23:51:45 
+
+Time difference of 1.625583 days
+> 
+> 
+> ######################################### end ##################
+> 
+> 
+> 
+> proc.time()
+      user     system    elapsed 
+345213.278    552.498 140855.095 

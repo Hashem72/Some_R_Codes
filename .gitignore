@@ -1,0 +1,7 @@
+*.~
+*.pdf
+*.gz
+*.xlsx
+Figures/
+ZINBA_CODES/*.err
+ZINBA_CODES/*.output

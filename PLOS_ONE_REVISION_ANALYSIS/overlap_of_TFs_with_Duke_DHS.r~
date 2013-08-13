@@ -1,0 +1,80 @@
+precision.and.recall <- function(TFs.vs.UW.File, TFs.vs.Duke.File, Title, Model='Additive_Average', beta = 1, start.Threshold=1){
+  
+  UW.Data          = read.table(TFs.vs.UW.File)
+  Precision.UW     = UW.Data[ , 5]
+  Recall.UW        =  UW.Data[ , 6]
+  Thresholds.UW    =  UW.Data[ , 1]
+
+  Duke.Data       = read.table(TFs.vs.Duke.File)
+  Precision.Duke  =  Duke.Data[ , 5]
+  Recall.Duke     =  Duke.Data[ , 6]
+  Thresholds.Duke = Duke.Data[ ,1]
+
+  if (! all(Thresholds.UW ==  Thresholds.Duke)){
+    print(paste("Threshlds used for UW and Duke do not look the same! check your data") )
+  }
+ # par(mfrow = c(1,2))
+
+  Precision.UW.limited = Precision.UW[start.Threshold:length(Precision.UW) ]
+  Recall.UW.limited    = Recall.UW[start.Threshold:length(Recall.UW)   ]
+  Threholds.limited    = Thresholds.UW[start.Threshold:length(Thresholds.UW )   ]
+
+  
+  
+
+  Precision.Duke.limited = Precision.Duke[start.Threshold:length(Precision.Duke)  ]
+  Recall.Duke.limited    = Recall.Duke[start.Threshold:length(Recall.Duke)  ]
+
+
+  if(Model == 'Additive_Average'){
+    UW.Overlap           = ( Precision.UW.limited + Recall.UW.limited )/2
+    Duke.Overlap        = (Precision.Duke.limited + Recall.Duke.limited)/2
+    Ylab   = paste(' (precision+recall)/2')
+  }
+  else if (Model == 'F_Score' ){
+    Ylab = paste("F_",beta,"_Score", sep="")
+    cofficent   = (1+(beta)^2)
+     UW.Overlap   = cofficent *  (Precision.UW.limited   * Recall.UW.limited)   /(((beta)^2 * Precision.UW.limited) + Recall.UW.limited)
+     Duke.Overlap = cofficent *  (Precision.Duke.limited * Recall.Duke.limited) /(((beta)^2 * Precision.Duke.limited) + Recall.Duke.limited)
+    
+  }
+  else{
+    stop("Unknown model!")
+  }
+  
+  #plot(UW.Overlap~Threholds.limited, lwd = 3, col = 'red', type= 'l', xlab='Threshold', ylab = Ylab, main = 'UW', ylim = c(0.45, 0.68))
+  #plot(Duke.Overlap~Threholds.limited, lwd = 3, col='blue', type='l', xlab='Threshold', ylab = Ylab, ylim = c(0.32, 0.55))
+  lines(Duke.Overlap~Threholds.limited, lwd = 3, col='red')
+ }#precision.and.recall#
+
+
+plot.precision.vs.recall.for.all.three.cell.lines <- function(K562.File, GM12878.File, HelaS3.File, Title = " ", beta = 1,start.Threshold=1, Ylim = c(0,1) ){
+  K562.Data      = read.table(K562.File)
+  GM12878.Data   = read.table(GM12878.File)
+  HelaS3.Data    = read.table(HelaS3.File)
+
+  K562.Precision     = K562.Data[ , 5]
+  GM12878.Precision  = GM12878.Data[ , 5]
+  HelaS3.Precision   =  HelaS3.Data[, 5]
+
+
+  K562.Recall     = K562.Data[ , 6]
+  GM12878.Recall  = GM12878.Data[ , 6]
+  HelaSe.Recall   = HelaS3.Data[ , 6]
+
+  K562.Thresholds     = K562.Data[ , 1]
+  GM12878.Thresholds  = GM12878.Data[, 1]
+  HelaSe.Thresholds   = HelaS3.Data[, 1]
+
+  Ylab = paste("F_",beta,"_Score", sep="")
+  cofficent   = (1+(beta)^2)
+  
+  K562.Overlap   = cofficent *  (K562.Precision * K562.Recall) /(((beta)^2 *  K562.Precision) +  K562.Recall)
+  GM1287.Overlap = cofficent *  (GM12878.Precision * GM12878.Recall) /(((beta)^2 *  GM12878.Precision) +  GM12878.Recall)
+  HelaS3.Overlap = cofficent *  (HelaS3.Precision * HelaS3.Recall) /(((beta)^2 *  HelaS3.Precision) +  HelaS3.Recall)
+
+  plot( K562.Overlap~K562.Thresholds, lwd = 3, col='blue', type='b',pch = 2,  xlab='Threshold', ylab = Ylab, ylim = Ylim)
+  lines(GM12878.Overlaps~GM12878.Thresholds, type = 'b', pch =3, col= 'red', lwd=3,)
+  lines(HelaS3.Overlaps~HelaS3.Thresholds, type = 'b', pch =4, col= 'green', lwd=3,)
+
+}#plot.precision.vs.recall.for.all.three.cell.lines#

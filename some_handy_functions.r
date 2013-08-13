@@ -4,6 +4,19 @@ library(ggplot2)
 library(reshape2)
 
 
+
+summary.stats.of.DHS.lengths <- function(aFileContainingLength, length.Threshold){
+  data = scan(aFileContainingLength, quiet = TRUE)
+  long.dhs.indices = which(data >= length.Threshold)
+  lengths   = data[long.dhs.indices]
+  print(length(lengths))
+  summary(lengths)
+}#summary.stats.of.DHS.lengths#
+
+
+
+
+
 k.mer.as.data.frame <- function(RealKMersFile, BgKmersFile){
   tab5rows  <- read.table(RealKMersFile, nrows = 5)
   classes   <- sapply(tab5rows,class)
@@ -75,6 +88,9 @@ bed.as.data.frame <- function(aBedFile){
   }
   else if(numCol == 12){
     colName = c("chrom", "start", "end", "name", "score", "strand", "thickStart", "thickEnd", "itemRgb", "blockCount", "blockSize", "blockStarts")
+  }
+  else if (numCol == 10){
+    colName = c("chrom", "start", "end", "name", "score", "strand", "thickStart", "thickEnd", "itemRgb", "peakScore")
   }
   else{
     stop(paste("Expected a bed file but got file with ", numCol, " collumns!", sep = " "))

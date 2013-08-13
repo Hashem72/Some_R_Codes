@@ -1,0 +1,29 @@
+Gm12878.Union.Of.Common.Peaks = "/nfs/th_group/hk3/SYD_TFS/Gm12878/Gm12878_Common_With_K562_and_Helas3/Chr22/Chr22_Sorted/GM12878_union_of_peaks.bed"
+K562.Union.Of.Common.Peaks    = "/nfs/th_group/hk3/SYD_TFS/K562/K562_Common_With_Gm12878_and_Helas3/Chr22/Chr22_Sorted/K562_union_of_peaks.bed"
+HelaS3.Union.Of.Common.Peaks  = "/nfs/th_group/hk3/SYD_TFS/HelaS3/HelaS3_common_With_K562_and_GM12878/Chr22/Chr22_Sorted/HelaS3_union_of_peaks.bed"
+
+
+get.summary.statistics <- function(fileOfPeaks){
+  data    = read.table(fileOfPeaks)
+  starts  = data[ ,2]
+  ends    = data[ ,3]
+  lengths = ends - starts
+  print(paste("Number of peaks = ", length(lengths)))
+  print(summary(lengths))
+  hist(lengths, xlab='lengths', breaks=50, main='distribution of lengths' )
+  lengths
+}#get.summary.statistics#
+
+
+get.nct.freqs <- function(nctsFile){
+  data = read.table(nctsFile, header = TRUE)
+  data
+}#get.nct.freqs#
+
+
+K562.Freq.of.Ncts.File    = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/K562_Freq_of_ncts_in_ENCODE_DHS.txt"
+GM12878.Freq.of.Ncts.File = "/nfs/th_group/hk3/UW_DNaseI_HS/Gm12878_For_Paper_Analysis/Gm12878_Freq_of_ncts_in_ENCODE_DHS.txt"
+H1hESC.Freq.of.Ncts.File  = "/nfs/th_group/hk3/UW_DNaseI_HS/H1hesc_For_Paper_Analysis/H1hesc_Freq_of_ncts_in_ENCODE_DHS.txt"
+HelaS3.Freq.of.Ncts.File  = "/nfs/th_group/hk3/UW_DNaseI_HS/Helas3_For_Paper_Analysis/Helas3_Freq_of_ncts_in_ENCODE_DHS.txt"
+HSMM.Freq.of.Ncts.File    = "/nfs/th_group/hk3/UW_DNaseI_HS/Hsmm_For_Paper_Analysis/Hsmm_Freq_of_ncts_in_ENCODE_DHS.txt"
+  

@@ -29,12 +29,19 @@ PLOT.FREQ.FOR.EAH.BASE("/nfs/th_group/hk3/Duke_DNaseI_HS/K562/tags_compositions_
 PLOT.WEIGHTS.FOR.EACH.BASE(pwm.file, "PWM model")
 PLOT.WEIGHTS.FOR.EACH.BASE(pwm.background.model.file,"Background model")
 
+pdf("Tags_Compositions.pdf", height = 20, width=15, title = "Nucleotide bias at tags level",paper="a4")
+par(cex=1, lwd =1, col.axis="black", col.lab="black", col.main="black", col.sub="black", fg="black", mfrow = c(3,2), cex.axis=1.2, tck=-.01, cex.lab=1.3)
+PLOT.FREQ.FOR.EAH.BASE("/nfs/th_group/hk3/UW_DNaseI_HS/Gm12878/wgEncodeUwDnaseGm12878AlnRep1_chr22_composition.txt", "UW Gm12878")
+PLOT.FREQ.FOR.EAH.BASE("/nfs/th_group/hk3/wgEncodeUwHistone/Gm12878_Histone/Composition_wgEncodeUwHistoneGm12878H3k4me3StdAlnRep1_chr22.txt", "Gm12878- H3k5me3")
 
-par(mfrow= c(1,3))
-PLOT.FREQ.FOR.EAH.BASE("/nfs/th_group/hk3/UW_DNaseI_HS/Gm12878/wgEncodeUwDnaseGm12878AlnRep1_chr22_compositions.txt", "UW Gm12878")
-PLOT.FREQ.FOR.EAH.BASE("/nfs/th_group/hk3/UW_DNaseI_HS/H1hesc/wgEncodeUwDnaseH1hescAlnRep1_chr22_compositions.txt","UW H1hesc")
+
 PLOT.FREQ.FOR.EAH.BASE("/nfs/th_group/hk3/UW_DNaseI_HS/K562/wgEncodeUwDnaseK562AlnRep1_chr22_composition.txt","UW K562")
+PLOT.FREQ.FOR.EAH.BASE("/nfs/th_group/hk3/wgEncodeUwHistone/K562_Histon/wgEncodeUwHistoneK562H3k4me3StdAlnRep1_chr22_composition.txt", "K562- H3k4me")
 
+PLOT.FREQ.FOR.EAH.BASE("/nfs/th_group/hk3/UW_DNaseI_HS/H1hesc/wgEncodeUwDnaseH1hescAlnRep1_chr22_composition.txt","UW H1hesc")
+PLOT.FREQ.FOR.EAH.BASE("/nfs/th_group/hk3/UW_DNaseI_HS/H1hesc/wgEncodeUwDnaseH1hescAlnRep1_chr22_composition_moved_tags.txt", "H1hesc Background")
+
+dev.off()
 
 pmsFile <- "/nfs/th_group/hk3/UW_DNaseI_HS/K562/pms_scores.txt"
 pbsFile <- "/nfs/th_group/hk3/UW_DNaseI_HS/K562/pbs_scores.txt"
@@ -100,11 +107,11 @@ PLOT.FREQ.FOR.EAH.BASE<- function(dataFile,Main){
   total.T <- sum(pwm_matrix[,4])
   print(paste("a= ", total.A, "c=", total.C, "g=", total.G,"t=", total.T, sep = " " ))
 
-  plot(pwm_matrix[,1]/total.A,col = 'red', lwd =3, type = 'l', ylab= 'frequency', xlab= 'tag position',,main = Main,ylim = c(0,0.5))
+  plot(pwm_matrix[,1]/total.A,col = 'red', lwd =3, type = 'l', ylab= 'frequency', xlab= 'tag position',,main = Main,ylim = c(0,0.5), font.axis =1, font.lab = 3)
 lines(pwm_matrix[,2]/total.A, col = 'blue', lwd =3)
 lines(pwm_matrix[,3]/total.A, col = 'green', lwd =3)
 lines(pwm_matrix[,4]/total.A, col = 'grey', lwd =3)
-legend('topright', legend = c("a","c","g","t"), lty=1:4,col = c("red", "blue","green", "grey"), pt.bg = 'orange', pt.lwd =3, lwd =2, bg= 'khaki', ncol =1)
+legend('topright', legend = c("a","c","g","t"), lty=1:4,col = c("red", "blue","green", "grey"), pt.bg = 'orange', pt.lwd =3, lwd =2, bg= 'khaki', ncol =2)
 
 }#PLOT.FREQ.FOR.EAH.BASE#
 

@@ -1,0 +1,4 @@
+scoresFileShift40     = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/Shift_Effects/bias_scores_fromoffset_5_length_15_shift_40.txt"
+plot.bias.scores <- function(aBedFile){
+  df       = read.table(aBedFile)
+}#plot.bias.scores#

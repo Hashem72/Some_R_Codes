@@ -1,0 +1,130 @@
+plot.f.bets.scores.for.all.cell.line.from.one.algorithm <- function(K562.cell.line.file,
+                                                                    Gm12878.cell.line.file,
+                                                                    Helas3.cell.line.file,
+                                                                    beta,
+                                                                    algorithm
+                                                                    ){
+  #K562
+  K562.data       = read.table(K562.cell.line.file)
+  K562.applied.thresholds.indics             = match(algorithm$THRESHOLDS, K562.data[ ,1])
+  K562.data      = K562.data[K562.applied.thresholds.indics, ]
+  K562.thresholds     =  K562.data[ , 1]
+  K562.pre       =  K562.data[ , 5]
+  K562.rec       =  K562.data[ , 6]
+  K562.f         = F.Beta.Scores(beta, K562.pre, K562.rec)
+  plot( K562.f~K562.thresholds, lwd =3, type='l', col='red', ylim= c(0.3, 0.8),xlab="threshold",ylab=YLab,main="F-Seq")
+  K562.default    = which(K562.data[ , 2]== algorithm$DEFAULT)
+  K6562.pre.default = K562.data[K562.default, 5]
+  K6562.rec.default = K562.data[K562.default, 6]
+  K562.f.default   = F.Beta.Scores(beta, K6562.pre.default,  K6562.rec.default)
+  points(K562.data[K562.default,1], K562.f.default, lwd=3, pch=1 )
+  
+}#plot.f.bets.scores.for.all.cell.line.from.one.algorithm#
+
+
+plot.f.beta.scores.for.all.three.cell.lines.from.all.algorithms <- function(file.name,
+                               macs.file.name,
+                               zinba.broad.file,
+                               zinba.narrow.data,
+                               encode.file,
+                               hotspot.file,
+                               beta,
+                               fseq,
+                               macs,
+                               zinba,
+                               hotspot){
+  par(mfrow=c(2,3))
+  YLab = paste("F_",beta,sep="")
+  
+  #fseq
+  data        = read.table(file.name)
+  fseq.applied.thresholds.indices = match(fseq$THRESHOLDS, data[ ,1])
+  data        = data[fseq.applied.thresholds.indices, ]
+  thresholds  = data[ , 1]
+  pre         = data[ , 5]
+  rec         = data[ , 6]
+  f           = F.Beta.Scores(beta, pre, rec)
+  plot(f~ thresholds, col='orange', lwd=3, type='l', ylim= c(0.3, 0.8),xlab="threshold",ylab=YLab,main="F-SEQ")
+  fseq.default = which(data[ ,1]==fseq$DEFAULT)
+  fseq.pre.default = data[fseq.default, 5]
+  fseq.rec.default = data[fseq.default, 6]
+  f.default = F.Beta.Scores(beta, fseq.pre.default, fseq.rec.default)
+  points(data[fseq.default,1], f.default,lwd=3, pch=1 )
+  
+  #hotspot
+  hotspot.data                          = read.table(hotspot.file)
+  hotspot.applied.thresholds.indices    = match(hotspot$THRESHOLDS, hotspot.data[ ,1])
+  hotspot.data                          = hotspot.data[hotspot.applied.thresholds.indices, ]
+  hotspot.thresholds                    = hotspot.data[ , 1]
+  hotspot.pre                           = hotspot.data[ , 5]
+  hotspot.rec                           = hotspot.data[ , 6]
+  hotspot.f                             = F.Beta.Scores(beta, hotspot.pre, hotspot.rec)
+  plot(hotspot.f~hotspot.thresholds, col='darkmagenta', lwd=3, type='l', ylim= c(0.3, 0.8),xlab="threshold",ylab=YLab,main="Hotspot")
+  hotspot.default  = which( hotspot.data == hotspot$DEFAULT)
+  hotspot.pre.default = hotspot.data[hotspot.default, 5]
+  hotspot.rec.default = hotspot.data[hotspot.default, 6]
+  hotspot.f.default   = F.Beta.Scores(beta, hotspot.pre.default, hotspot.rec.default)
+  points(hotspot.data[hotspot.default, 1], hotspot.f.default, lwd=3, pch=1)
+  
+ 
+
+  
+  
+#macs
+  macs.data                       = read.table(macs.file.name)
+  macs.applied.thresholds.indices = match( macs$THRESHOLDS, macs.data[ ,1])
+  macs.data                       = macs.data[macs.applied.thresholds.indices, ]
+  
+  macs.pre                        = macs.data[ , 5]
+  macs.rec                        = macs.data[ , 6]
+  macs.threshold                  =  macs.data[ , 1]
+  
+  macs.f                  = F.Beta.Scores(beta, macs.pre, macs.rec)
+  plot(macs.f~macs.threshold, col='red', lwd=3, type='l', xlab="threshold", ylab=YLab, main="MACS", ylim= c(0.3, 0.8))
+  macs.default.index        = which(macs.data[ ,1]  == macs$DEFAULT)
+  macs.pre.default  = macs.data[macs.default.index, 5]
+  macs.rec.default = macs.data[macs.default.index, 6]
+  f.macs.default    = F.Beta.Scores(beta, macs.pre.default, macs.rec.default )
+  points(macs.data[macs.default.index,1 ],  f.macs.default, lwd=2, pch=1)
+
+#zina.broad
+  zinba.broad.data      = read.table(zinba.broad.file)
+  zinba.braod.applied.threshold.indices = match(zinba$THRESHOLDS, zinba.broad.data[ ,1] )
+  zinba.broad.data      = zinba.broad.data[zinba.braod.applied.threshold.indices, ]
+  zinba.broad.pre       = zinba.broad.data[ , 5]
+  zinba.broad.rec       = zinba.broad.data[ , 6]
+  zinba.broad.threholds = zinba.broad.data[ , 1]
+  zinba.broad.f         = F.Beta.Scores(beta,  zinba.broad.pre,  zinba.broad.rec)
+  plot(zinba.broad.f~zinba.broad.threholds, col='brown', lwd=3, type='l', xlab="threshold", ylab=YLab, main="ZINBA_BROAD", ylim= c(0.3, 0.8))
+
+  
+  zinba.broad.default.index = which(zinba.broad.data[, 1]==zinba$DEFAULT)
+  zinba.broad.pre.default   = zinba.broad.data[zinba.broad.default.index,5]
+  zinba.broad.rec.default   = zinba.broad.data[zinba.broad.default.index,6]
+  f.zinba.braod.default   = F.Beta.Scores(beta, zinba.broad.pre.default, zinba.broad.rec.default )
+  points(zinba.broad.data[ zinba.broad.default.index,1],  f.zinba.braod.default, lwd=2, pch=1 )
+  
+  
+  
+
+ #zinba.narrow
+  zinba.narrow.data       = read.table(zinba.narrow.data)
+  zinba.narrow.applied.threshold.indices = match(zinba$THRESHOLDS, zinba.narrow.data[ ,1] )
+  zinba.narrow.data      = zinba.narrow.data[zinba.narrow.applied.threshold.indices, ]
+  zinba.narrow.pre        =  zinba.narrow.data[ , 5]
+  zinba.narrow.rec        =  zinba.narrow.data[ , 6]
+  zinba.narrow.thresholds =  zinba.narrow.data[ , 1]
+  zinba.narrow.f          =  F.Beta.Scores(beta, zinba.narrow.pre, zinba.narrow.rec )
+  plot(zinba.narrow.f~zinba.narrow.thresholds, col='blue', lwd=3, type='l', xlab="threshold", ylab=YLab, main="ZINAB_NARROW", ylim= c(0.3, 0.8))
+
+  zinba.narrow.default.index = which(zinba.narrow.data[,1]==zinba$DEFAULT)
+  zinba.narrow.pre.default   = zinba.narrow.data[zinba.narrow.default.index,5]
+  zinba.narrow.rec.default   = zinba.narrow.data[zinba.narrow.default.index,6]
+  f.zinba.narrow.default     = F.Beta.Scores(beta, zinba.narrow.pre.default, zinba.narrow.rec.default )
+  points(zinba.narrow.data[zinba.narrow.default.index,1], f.zinba.narrow.default, lwd=2, pch=1)
+  
+
+   
+}#plot.f.beta.scores.v2#
+
+

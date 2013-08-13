@@ -1,0 +1,25 @@
+Gm12878.TFs.With.MD5sum.File = "/nfs/th_group/hk3/SYD_TFS/Gm12878/All/List_Of_Gm12878_TFS_with_md5sum.txt"
+K562.TFs.With.MD5sum.File    =  "/nfs/th_group/hk3/SYD_TFS/K562/All/List_Of_K562_TFS_with_md5sum.txt"
+Helas3.TFs.With.MD5sum.File    =  "/nfs/th_group/hk3/SYD_TFS/HelaS3/All/List_Of_Helas3_TFS_with_md5sum.txt"
+get.list.of.tfs <- function(fileName, cellLine){
+  TFs      = c()
+  TFs.Names.And_MD5Sums = read.table(fileName)
+  TFs.Names  =  TFs.Names.And_MD5Sums[ ,1]
+  for(t in TFs.Names){
+    FirtsPart = strsplit(t,"Pk")[[1]][1]
+    TFName  = strsplit(FirtsPart, cellLine)[[1]][2]
+    TFs    = c(TFs, TFName)
+   # print(TFName)
+  }
+  TFs
+}#get.list.of.tfs#
+
+
+get.common.tfs <- function(GM12878File, K562File, Helas3File){
+  GM.TFs  = get.list.of.tfs(GM12878File, "Gm12878")
+  K562.TFs =  get.list.of.tfs(K562File, "K562")
+  Helas3.TFs = get.list.of.tfs(Helas3File, "Helas3")
+  Gm.And.K562 = intersect(GM.TFs, K562.TFs)
+  Common.TFs  = intersect(Gm.And.K562, Helas3.TFs)
+  Common.TFs
+}

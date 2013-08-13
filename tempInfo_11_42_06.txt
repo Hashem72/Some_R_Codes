@@ -1,0 +1,2 @@
+library(zinba);
+twobittofa(chrm="chr22",start=1,end=51304566,twoBitFile="/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit",gcSeq="tempSeq_11_42_06.txt");

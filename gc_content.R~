@@ -1,0 +1,11 @@
+K562.file = "/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/wgEncodeUwDnaseK562AlnRep1_chr22_with_biasness_scores_and_gc_content.txt"
+
+k562.data = read.table(file = K562.file, header = TRUE, sep = "\t")
+GC.Content = k562.data$gc_content
+GC.Content.sorted = sort(GC.Content)
+Scor       = k562.data$score
+Score.sorted     = sort(Score)
+
+cor(GC.Content, Score)
+plot(GC.Content.sorted)
+plot(GC.sorted)

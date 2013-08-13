@@ -1,0 +1,36 @@
+### for more information about insalling and running ZINBA look at: https://code.google.com/p/zinba/wiki/UsingZINBA
+# bsub -q long -o zinba_0.05_%J.output -e zinba_0.05_%J.err -M8000000 -R"select[mem>8000] rusage[mem=8000]" /software/bin/R-2.15 CMD BATCH ZINBA_Analysis.r
+library(zinba)
+
+
+
+
+
+# summary of zinba output
+
+#zinba.peaks <- read.table(file = "/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562/ZINBA_OUT_3.peaks", header = TRUE)
+
+
+basealigncount(
+               inputfile  ="/nfs/th_group/hk3/UW_DNaseI_HS/Gm12878/wgEncodeUwDnaseGm12878AlnRep1_chr22.bed",
+               outputfile = "/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/Gm12878/wgEncodeUwDnaseGm12878AlnRep1_chr22_0.01.basecount",
+               extension  = 150,
+               filetype   ="bed",
+               twoBitFile="/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit"
+               )
+zinba(
+      align="/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/Gm12878",
+      numProc=5,
+      threshold=0.01, #FDR threshold the default is 0.05 
+      seq= "/nfs/th_group/hk3/UW_DNaseI_HS/Gm12878/wgEncodeUwDnaseGm12878AlnRep1_chr22.bed",
+      basecountfile="/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/Gm12878/wgEncodeUwDnaseGm12878AlnRep1_chr22_0.01.basecount",
+      filetype="bed",
+      #outfile="/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/K562/ZINBA_OUT_3_FDR_0.75",
+      outfile="/nfs/th_group/hk3/ZINBA_ANALYSIS/UW/Gm12878/ZINBA_OUT_FDR_0.01",
+      twoBit="/nfs/th_group/hk3/Human_Genome_Build/hg19.2bit",
+      extension=150,
+      printFullOut=1,
+      refinepeaks=1,
+      broad=F,
+      input="none"
+      )

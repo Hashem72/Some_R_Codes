@@ -1,0 +1,22 @@
+K562.data <- scan("/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/motif_socres_wgEncodeUwDnaseK562AlnRep1_chr22_s5_l15.txt")
+
+
+Gm12878.data <- scan("/nfs/th_group/hk3/UW_DNaseI_HS/Gm12878_For_Paper_Analysis/motif_socres_wgEncodeUwDnaseGm12878AlnRep1_chr22_s5_l15.txt")
+
+H1.data = scan("/nfs/th_group/hk3/UW_DNaseI_HS/H1hesc_For_Paper_Analysis/motif_socres_wgEncodeUwDnaseH1hescAlnRep1_chr22_s5_l15.txt")
+
+
+Gm_hist <- hist(Gm12878.data[ Gm12878.data != -1000], col = 'blue', main="chr_scan scores for Gm and K562")
+K562_hist <- hist(K562.data[K562.data  != -1000], col = 'red')
+H1.hist <- hist(H1.data[H1.data != -1000], col = 'orange')
+plot(Gm_hist, col=rgb(0,0,1,1/4), xlim= c(-6, 5), main="chr_wide scores for Gm12878 and K562", xlab= "scores")
+plot(K562_hist, add = TRUE, col=rgb(1,0,0,1/4))
+
+
+K562_indices_of_scores_greater_than_3 = which(K562.data >= 3)
+Gm12878_indices_of_scores_greater_than_2.75 = which(Gm12878.data >= 2.75)
+Gm_above_2.75_hist = hist(Gm12878_indices_of_scores_greater_than_2.75+16500000, breaks = seq(16500000, 52000000, by= 1000000), xlab = "chromosomal position", main = "Gm12878: chromosomal  distribution  of  scores>=2.75", col=rgb(0,0,1,1/4))
+hist(K562_indices_of_scores_greater_than_3+16500000, breaks = seq(16500000, 52000000, by= 1000000), xlab = "chromosomal position", main = "K562: chromosomal  distribution  of  scores>=3")
+plot(K562_above_3_hist, col=rgb(1,0,0,1/4), main = "chromosomal distribution of high-scored positions\n red:K562, blue:Gm12878", xlab= "chromosomal position")
+H1.data = scan("/nfs/th_group/hk3/UW_DNaseI_HS/H1hesc_For_Paper_Analysis/motif_socres_wgEncodeUwDnaseH1hescAlnRep1_chr22_s5_l15.txt")
+

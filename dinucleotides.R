@@ -1,0 +1,77 @@
+get.dinucleotide.frequencies <- function(dinucloetide.Freq.File, dinucleotide.Freq.Random.Tags.File){
+	results = list()
+	freq.From.Real.Tags    = read.table(file = dinucloetide.Freq.File)
+	freq.Frome.Random.Tags = read.table(file = dinucleotide.Freq.Random.Tags.File)
+	results$real          = freq.From.Real.Tags
+	results$randome       = freq.Frome.Random.Tags
+	results
+}#get.dinucleotide.frequencies#
+
+dinucleotides = c("aa", "ac", "ag", "at", "ca", "cc", "cg", "ct", "ga", "gc", "gg", "gt", "ta", "tc", "tg", "tt")
+
+
+#UW DATA
+#Gm12878
+dinucleotide.freq.data = get.dinucleotide.frequencies("/nfs/th_group/hk3/UW_DNaseI_HS/Gm12878_For_Paper_Analysis/wgEncodeUwDnaseGm12878Alnrep1_chr22_dinucleotides_frequency.txt", "/nfs/th_group/hk3/UW_DNaseI_HS/Gm12878_For_Paper_Analysis/dinucleotides_frequency_from_Gm12878_randomly_generated_tags.txt")
+
+
+
+#dinucleotide.freq.data = get.dinucleotide.frequencies("/nfs/th_group/hk3/UW_DNaseI_HS/K562_For_Paper_Analysis/wgEncodeUwDnaseK562Alnrep1_chr22_dinucleotides_frequency.txt", "/nfs/th_group/hk3/UW_DNaseI_HS/Gm12878_For_Paper_Analysis/dinucleotides_frequency_from_Gm12878_randomly_generated_tags.txt")
+
+
+#dinucleotide.freq.data = get.dinucleotide.frequencies("/nfs/th_group/hk3/UW_DNaseI_HS/H1hesc_For_Paper_Analysis/wgEncodeUwDnaseH1hescAlnrep1_chr22_dinucleotides_frequency.txt", "/nfs/th_group/hk3/UW_DNaseI_HS/Gm12878_For_Paper_Analysis/dinucleotides_frequency_from_Gm12878_randomly_generated_tags.txt")
+
+#dinucleotide.freq.data = get.dinucleotide.frequencies("/nfs/th_group/hk3/UW_DNaseI_HS/Hsmm_For_Paper_Analysis/wgEncodeUwDnaseHsmmAlnrep1_chr22_dinucleotides_frequency.txt", "/nfs/th_group/hk3/UW_DNaseI_HS/Gm12878_For_Paper_Analysis/dinucleotides_frequency_from_Gm12878_randomly_generated_tags.txt")
+
+#dinucleotide.freq.data = get.dinucleotide.frequencies("/nfs/th_group/hk3/UW_DNaseI_HS/Helas3_For_Paper_Analysis/wgEncodeUwDnaseHelas3Alnrep1_chr22_dinucleotides_frequency.txt", "/nfs/th_group/hk3/UW_DNaseI_HS/Gm12878_For_Paper_Analysis/dinucleotides_frequency_from_Gm12878_randomly_generated_tags.txt")
+
+
+# DUKE  DATA
+
+#dinucleotide.freq.data = get.dinucleotide.frequencies("/nfs/th_group/hk3/Duke_DNaseI_HS/Gm12878_For_Paper_Analysis/wgEncodeOpenChromDnaseGm12878Alnrep1_chr22_dinucleotides_frequency.txt", "/nfs/th_group/hk3/Duke_DNaseI_HS/Gm12878_For_Paper_Analysis/dinucleotides_frequency_from_Gm12878_randomly_generated_tags.txt")
+
+#dinucleotide.freq.data = get.dinucleotide.frequencies("/nfs/th_group/hk3/Duke_DNaseI_HS/K562_For_Paper_Analysis/wgEncodeOpenChromDnaseK562Alnrep1_chr22_dinucleotides_frequency.txt", "/nfs/th_group/hk3/Duke_DNaseI_HS/Gm12878_For_Paper_Analysis/dinucleotides_frequency_from_Gm12878_randomly_generated_tags.txt")
+
+#dinucleotide.freq.data = get.dinucleotide.frequencies("/nfs/th_group/hk3/Duke_DNaseI_HS/H1hesc_For_Paper_Analysis/wgEncodeOpenChromDnaseH1hescAlnrep1_chr22_dinucleotides_frequency.txt", "/nfs/th_group/hk3/Duke_DNaseI_HS/Gm12878_For_Paper_Analysis/dinucleotides_frequency_from_Gm12878_randomly_generated_tags.txt")
+
+
+#dinucleotide.freq.data = get.dinucleotide.frequencies("/nfs/th_group/hk3/Duke_DNaseI_HS/Hsmm_For_Paper_Analysis/wgEncodeOpenChromDnaseHsmmAlnrep1_chr22_dinucleotides_frequency.txt", "/nfs/th_group/hk3/Duke_DNaseI_HS/Gm12878_For_Paper_Analysis/dinucleotides_frequency_from_Gm12878_randomly_generated_tags.txt")
+
+
+#dinucleotide.freq.data = get.dinucleotide.frequencies("/nfs/th_group/hk3/Duke_DNaseI_HS/Helas3_For_Paper_Analysis/wgEncodeOpenChromDnaseHelas3Alnrep1_chr22_dinucleotides_frequency.txt", "/nfs/th_group/hk3/Duke_DNaseI_HS/Gm12878_For_Paper_Analysis/dinucleotides_frequency_from_Gm12878_randomly_generated_tags.txt")
+
+
+DINUC.REAL.TAGS                   = dinucleotide.freq.data$real
+DINUC.RANDOM.TAGS                 = dinucleotide.freq.data$random
+DINUC.NORMALIZED                  = DINUC.REAL.TAGS/DINUC.RANDOM.TAGS
+DINUC.NORMALIZED.MATRIX           = as.matrix(DINUC.NORMALIZED)
+DINUC.NORMALIZED.MATRIX.T         = t(DINUC.NORMALIZED.MATRIX)
+rownames(DINUC.NORMALIZED.MATRIX.T) = dinucleotides
+
+
+#heatmap.2(DINUC.NORMALIZED.MATRIX.T, col=redgreen(75), scale="row", key=TRUE, density.info="none", trace="none",cexCol=0.9, dendrogram = "row", Colv = FALSE, colsep = c(10,30))
+
+AA.AT.TA.TC.INDICES = c(1, 4, 13, 14)
+CC.CG.GC.GG.INDICES = c(6, 7, 10, 11)
+plot(colMeans( log(DINUC.NORMALIZED.MATRIX.T)[AA.AT.TA.TC.INDICES,-56]), col ='red', lwd =3, type = 'l', ylab= 'dinucleotid frequency', xlab= 'sequence position', main = "UW:Gm12878", ylim = c(-1, 1) )
+lines( colMeans(log(DINUC.NORMALIZED.MATRIX.T)[CC.CG.GC.GG.INDICES,-56]) , lwd = 3, col='blue')
+abline(v=10, lty = 1, col='grey')
+abline(v=46, lty = 1, col='grey')
+
+
+
+
+
+plot(DINUC_NORMALIZED[, 1], col = 'blue', pch=1, lty=1, lwd =2, type='b', ylab = "dinucleotides freq", main = "dinucleotide freqs", ylim= c(0,3))
+for(x in seq(2:16)){
+	title = paste("normalized frequency of ", dinucleotides[x], sep=" ")
+	lines(DINUC_NORMALIZED[, x], col = x, pch=1, lty=1, lwd =2, type='b', ylab = "dinucleotides freq")
+}
+
+
+par(mfrow = c(4,4))
+for(x in seq(1:16)){
+  plot(DINUC.NORMALIZED.MATRIX.T[x,], main =dinucleotides[x], lwd =2, col = "blue", type = 'l', ylab =paste("freq of", dinucleotides[x], sep=" "), xlab= "seq position" )
+}
+
+
